@@ -159,5 +159,16 @@ router.put('/api/recipes/:id', (req, res) => {
 // ^^^ REQUIRES ATTENTION ^^^^^^
 
 // DELETE a recipe ".../api/recipes/:id"
+router.delete("/:id", (req, res) => {
+    Recipe.destroy({
+        where: { id: req.params.id }
+    })
+        .then(dbRecipeData => {
+            if (!dbRecipeData) return res.status(404).json({ message: "No recipe found with this id" });
+
+            res.json(dbRecipeData);
+        })
+        .catch(err => res.status(500).json(err));
+});
 
 module.exports = router;
