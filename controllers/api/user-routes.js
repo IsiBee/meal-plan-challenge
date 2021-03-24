@@ -102,5 +102,16 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE a user ".../api/users/:id"
+router.delete("/:id", (req, res) => {
+    User.destroy({
+        where: { id: req.params.id }
+    })
+        .then(dbUserData => {
+            if (!dbUserData) return res.status(404).json({ message: "No user found with this id" });
+
+            res.json(dbUserData);
+        })
+        .catch(err => res.status(500).json(err));
+});
 
 module.exports = router;
