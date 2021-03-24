@@ -83,6 +83,24 @@ router.get("/:id", (req, res) => {
 // ^^^ REQUIRES ATTENTION ^^^^^^
 
 // POST create ingredient ".../api/ingredients"
+router.post("/", (req, res) => {
+    // expects {
+    //     ingredient_name: "Cheddar",
+    //     is_gluten_free: true,
+    //     is_vegetarian: true,
+    //     is_vegan: false,
+    //     is_keto: true
+    // }
+    Ingredient.create({
+        ingredient_name: req.body.ingredient_name,
+        is_gluten_free: req.body.is_gluten_free,
+        is_vegetarian: req.body.is_vegetarian,
+        is_vegan: req.body.is_vegan,
+        is_keto: req.body.is_keto
+    })
+        .then(dbIngredientData => res.json(dbIngredientData))
+        .catch(err => res.status(500).json(err));
+});
 
 // PUT update ingredient ".../api/ingredients/:id"
 
