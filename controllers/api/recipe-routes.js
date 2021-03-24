@@ -131,6 +131,32 @@ router.post("/", (req, res) => {
 // UPVOTE route
 
 // PUT update recipe ".../api/recipes/:id"
+router.put('/api/recipes/:id', (req, res) => {
+    Recipe.update(
+        {
+            recipe_name: req.body.recipe_name,
+            description: req.body.description,
+            prep_time: req.body.prep_time,
+            cook_time: req.body.cook_time,
+            cooking_instructions: req.body.cooking_instructions,
+            is_spicy: req.body.is_spicy,
+            
+            // check back on these
+            ingredient_id: req.body.ingredient_id,
+            weekday: req.body.weekday,    
+        },
+        {
+            where: { id: req.params.id }
+        }
+    )
+        .then(dbRecipeData => {
+            if (!dbRecipeData) return res.status(404).json({ message: "No recipe found with this id" });
+
+            res.json(dbRecipeData);
+        })
+        .catch(err => res.status(500).json(err));
+});
+// ^^^ REQUIRES ATTENTION ^^^^^^
 
 // DELETE a recipe ".../api/recipes/:id"
 
