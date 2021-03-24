@@ -103,6 +103,26 @@ router.post("/", (req, res) => {
 });
 
 // PUT update ingredient ".../api/ingredients/:id"
+router.put("/:id", (req, res) => {
+    Ingredient.update(
+        {
+            ingredient_name: req.body.ingredient_name,
+            is_gluten_free: req.body.is_gluten_free,
+            is_vegetarian: req.body.is_vegetarian,
+            is_vegan: req.body.is_vegan,
+            is_keto: req.body.is_keto    
+        },
+        {
+            where: { id: req.params.id }
+        }
+    )
+        .then(dbIngredientData => {
+            if (!dbIngredientData) return res.status(404).json({ message: "No ingredient found with this id" });
+
+            res.json(dbIngredientData);
+        })
+        .catch(err => res.status(500).json(err));
+});
 
 // DELETE ingredient ".../api/ingredients/:id"
 
