@@ -79,8 +79,40 @@ router.post("/", (req, res) => {
 });
 
 // LOGIN route
+router.post("/login", (req, res) => {
+    // expects {
+    //     email: "dustyb@fakemail.com",
+    //     password: "EatMyDust!"
+    // }
+    User.findOne({
+        where: { email: req.body.email }
+    })
+        .then(dbUserData => {
+            if (!dbUserData) return res.status(404).json({ message: "No user found with this email!" });
+
+            req.session.save(() => {
+                req.session.user_id = dbUserData.id;
+                req.session.username = dbUserData.username;
+                req.session.loggedIn = true;
+
+                res.json({ 
+                    user: dbUserData,
+                    message: "You are now logged in!"
+                });
+            });
+        });
+});
 
 // LOGOUT route
+router.post("/logout", (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+});
 
 // PUT update a user ".../api/users/:id"
 router.put("/:id", (req, res) => {
@@ -89,7 +121,7 @@ router.put("/:id", (req, res) => {
     //     email: "dustyb@fakemail.com",
     //     password: "EatMyDust!"
     // }
-    User.update(req.body {
+    User.update(req.body, {
         individualHooks: true,
         where: { id: req.params.id }
     })
