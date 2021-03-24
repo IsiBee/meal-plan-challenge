@@ -90,6 +90,43 @@ router.get("/:id", (req, res) => {
 });
 
 // POST create new recipe ".../api/recipes"
+router.post("/", (req, res) => {
+    // expects {
+    //     recipe_name: "Mac & Cheese",
+    //     description: "the easiest pasta",
+    //     prep_time: "3 minutes",
+    //     cook_time: "20 - 30 minutes",
+    //     cooking_instructions: "follow box instructions",
+    //     is_spicy: false,
+
+    //     // === check back on the following ======================= 
+
+    //     ingredient_id: 1,
+    //     weekday: "Wednesday", // can be NULL
+
+    //     // ^^^^^^^^^^^^^ Come back to this!
+
+    //     user_id: 1
+    // }
+    Recipe.create({
+        recipe_name: req.body.recipe_name,
+        description: req.body.description,
+        prep_time: req.body.prep_time,
+        cook_time: req.body.cook_time,
+        cooking_instructions: req.body.cooking_instructions,
+        is_spicy: req.body.is_spicy,
+        
+        // check back on these
+        ingredient_id: req.body.ingredient_id,
+        weekday: req.body.weekday,
+
+        // get user_id from session
+        user_id: req.session.user_id
+    })
+        .then(dbRecipeData => res.json(dbRecipeData))
+        .catch(err => res.status(500).json(err));
+});
+// ^^^ REQUIRES ATTENTION ^^^^^^
 
 // UPVOTE route
 
