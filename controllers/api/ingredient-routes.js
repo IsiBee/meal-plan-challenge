@@ -125,5 +125,16 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE ingredient ".../api/ingredients/:id"
+router.delete("/:id", (req, res) => {
+    Ingredient.destroy({
+        where: { id: req.params.id }
+    })
+        .then(dbIngredientData => {
+            if (!dbIngredientData) return res.status(404).json({ message: "No ingredient found with this id" });
+
+            res.json(dbIngredientData);
+        })
+        .catch(err => res.status(500).json(err));
+});
 
 module.exports = router;
