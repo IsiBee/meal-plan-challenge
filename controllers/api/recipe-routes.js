@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
             "recipe_name",
             "description",
             "created_at",
+            "servings",
             "prep_time",
             "cook_time",
             "cooking_instructions",
@@ -52,6 +53,7 @@ router.get("/:id", (req, res) => {
             "recipe_name",
             "description",
             "created_at",
+            "servings",
             "prep_time",
             "cook_time",
             "cooking_instructions",
@@ -94,6 +96,7 @@ router.post("/", (req, res) => {
     // expects {
     //     recipe_name: "Mac & Cheese",
     //     description: "the easiest pasta",
+    //     servings: 2
     //     prep_time: "3 minutes",
     //     cook_time: "20 - 30 minutes",
     //     cooking_instructions: "follow box instructions",
@@ -136,6 +139,7 @@ router.put('/api/recipes/:id', (req, res) => {
         {
             recipe_name: req.body.recipe_name,
             description: req.body.description,
+            servings: req.body.servings,
             prep_time: req.body.prep_time,
             cook_time: req.body.cook_time,
             cooking_instructions: req.body.cooking_instructions,
