@@ -1,0 +1,43 @@
+<div class="col-8 pt-5">
+    <h3>Your Meals for the Week</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">Sunday</th>
+                <th scope="col">Monday</th>
+                <th scope="col">Tuesday</th>
+                <th scope="col">Wednesday</th>
+                <th scope="col">Thursday</th>
+                <th scope="col">Friday</th>
+                <th scope="col">Saturday</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-5"></td>
+                <td class="p-5"></td>
+                <td class="p-5"></td>
+                <td class="p-5"></td>
+                <td class="p-5"></td>
+                <td class="p-5"></td>
+                <td class="p-5"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{{#if posts.length}}
+<section>
+    <h2>Your Posts</h2>
+    <ol>
+        {{#each posts as |post|}}
+        <li>
+            {{> post-info post}}
+            <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+        </li>
+        {{/each}}
+    </ol>
+</section>
+{{/if}}
+
+<script src="/js/add-post.js"></script>
