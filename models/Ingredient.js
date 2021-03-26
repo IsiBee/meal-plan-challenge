@@ -44,4 +44,7 @@ Ingredient.init(
         underscored: true, 
         modelName: 'Ingredient',
     },
-)
+
+);
+
+module.exports = Ingredient;
