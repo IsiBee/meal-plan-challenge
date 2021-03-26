@@ -28,13 +28,11 @@ Recipe.init(
         prep_time:{
             type: DataTypes.INTEGER,
             allowNull: false, 
-            autoIncrement: true, 
         },
 
         cook_time:{
             type: DataTypes.INTEGER, 
             allowNull: false, 
-            autoIncrement: true,
         },
 
         cooking_instructions:{
@@ -45,6 +43,11 @@ Recipe.init(
         ingredient_id:{
             type: DataTypes.INTEGER,
             allowNull: false, 
+        },
+
+        is_spicy:{
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
         },
    
     },
