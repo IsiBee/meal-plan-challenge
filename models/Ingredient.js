@@ -19,11 +19,24 @@ Ingredient.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        
-        // IsGlutenFree: {
-        //     type
-        // }
+
+        is_gluten_free: {
+            type: DataTypes.BOOLEAN,
+        },
+
+        is_vegetarian: {
+            type: DataTypes.BOOLEAN,
+        },
+
+        is_vegan: {
+            type: DataTypes.BOOLEAN,
+        },
+
+        is_keto: {
+            type: DataTypes.BOOLEAN,
+        }, 
     },
+        
     {
         sequelize,
         timestamps: false, 
