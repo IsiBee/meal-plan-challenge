@@ -12,6 +12,6 @@ const ingredientData = [
     }
 ];
 
-const seedRecipes = () => Ingredient.bulkCreate(ingredientData);
+const seedIngredients = () => Ingredient.bulkCreate(ingredientData);
 
-module.exports = seedRecipes;
+module.exports = seedIngredients;

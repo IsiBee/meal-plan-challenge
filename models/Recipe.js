@@ -10,7 +10,7 @@ Recipe.init(
     {
         id:{
             type: DataTypes.INTEGER,
-            autoNull: false, 
+            allowNull: false, 
             primaryKey: true, 
             autoIncrement: true, 
         },
@@ -31,12 +31,12 @@ Recipe.init(
         },
 
         prep_time:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false, 
         },
 
         cook_time:{
-            type: DataTypes.INTEGER, 
+            type: DataTypes.STRING, 
             allowNull: false, 
         },
 
@@ -45,10 +45,13 @@ Recipe.init(
             allowNull: false,
         },
 
-        ingredient_id:{
-            type: DataTypes.INTEGER,
-            allowNull: false, 
-        },
+        // ingredient_id:{
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: "ingredient",
+        //         key: "id"
+        //     }
+        // },
 
         is_spicy:{
             type: DataTypes.BOOLEAN,
@@ -58,17 +61,17 @@ Recipe.init(
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: "User",
+                model: "user",
                 key: "id"
             }
         },
     },
     {
         sequelize,
-        timestamps: false, 
         freezeTablename: true,
         underscored: true, 
-        modelName: 'Recipe',
+        modelName: 'recipe',
+        tableName: 'recipe'
     },
 )
 

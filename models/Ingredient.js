@@ -42,7 +42,8 @@ Ingredient.init(
         timestamps: false, 
         freezeTablename: true,
         underscored: true, 
-        modelName: 'Ingredient',
+        modelName: 'ingredient',
+        tableName: 'ingredient'
     },
 
 );
