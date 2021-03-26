@@ -41,7 +41,7 @@ Recipe.init(
         },
 
         cooking_instructions:{
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
         },
 

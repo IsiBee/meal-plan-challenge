@@ -15,7 +15,7 @@ Ingredient.init(
             autoIncrement: true,
         },
 
-        name: {
+        ingredient_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },

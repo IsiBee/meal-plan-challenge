@@ -33,12 +33,12 @@ const recipeData = [
         user_id: 3
     },
     {
-        recipe_name: "Balogna Sandwich",
+        recipe_name: "Bologna Sandwich",
         description: "your basic sandwich",
         servings: 1,
         prep_time: "1 minute",
         cook_time: "1 minute",
-        cooking_instructions: "spread mayo on bread, place balogna and cheese in between slices, enjoy!",
+        cooking_instructions: "spread mayo on bread, place bologna and cheese in between slices, enjoy!",
         is_spicy: false,
         
         user_id: 2
