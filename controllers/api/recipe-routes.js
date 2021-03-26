@@ -14,8 +14,8 @@ router.get("/", (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            "ingredient_id",
-            "weekday",
+            // "ingredient_id",
+            // "weekday",
             "user_id"
         ],
         order: [["created_at", "DESC"]],
@@ -58,8 +58,8 @@ router.get("/:id", (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            "ingredient_id",
-            "weekday",
+            // "ingredient_id",
+            // "weekday",
             "user_id"
         ],
         include: [
@@ -120,8 +120,8 @@ router.post("/", (req, res) => {
         is_spicy: req.body.is_spicy,
         
         // check back on these
-        ingredient_id: req.body.ingredient_id,
-        weekday: req.body.weekday,
+        // ingredient_id: req.body.ingredient_id,
+        // weekday: req.body.weekday,
 
         // get user_id from session
         user_id: req.session.user_id
@@ -146,8 +146,8 @@ router.put('/api/recipes/:id', (req, res) => {
             is_spicy: req.body.is_spicy,
             
             // check back on these
-            ingredient_id: req.body.ingredient_id,
-            weekday: req.body.weekday,    
+            // ingredient_id: req.body.ingredient_id,
+            // weekday: req.body.weekday,    
         },
         {
             where: { id: req.params.id }
