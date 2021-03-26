@@ -129,10 +129,10 @@ router.post("/", (req, res) => {
         // weekday: req.body.weekday,
 
         // get user_id from session
-        // user_id: req.session.user_id
+        user_id: req.session.user_id
 
         // FOR INSOMNIA CORE TESTING
-        user_id: req.body.user_id
+        // user_id: req.body.user_id
     })
         .then(dbRecipeData => res.json(dbRecipeData))
         .catch(err => res.status(500).json(err));
@@ -157,7 +157,10 @@ router.put('/:id', (req, res) => {
             // ingredient_id: req.body.ingredient_id,
             // weekday: req.body.weekday,
 
-            user_id: req.body.user_id
+            user_id: req.session.user_id
+
+            // FOR INSOMNIA CORE TESTING
+            // user_id: req.body.user_id
         },
         {
             where: { id: req.params.id }
