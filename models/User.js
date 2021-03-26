@@ -1,47 +1,40 @@
-// Ingredient DB Model
+// USER DB Model
 
 const {Model, DataTypes } = require ('sequelize');
 
 const sequelize = require('../config/connection.js');
 
-class Ingredient extends Model {}
+class User extends Model {}
 
-Ingredient.init(
+User.init(
     {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false, 
             primaryKey: true, 
-            autoIncrement: true,
+            autoIncrement: true, 
         },
 
-        name: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
         },
 
-        is_gluten_free: {
-            type: DataTypes.BOOLEAN,
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
 
-        is_vegetarian: {
-            type: DataTypes.BOOLEAN,
+        password: {
+            type: DataTypes.TEXT,
+            allowNull: false,
         },
-
-        is_vegan: {
-            type: DataTypes.BOOLEAN,
-        },
-
-        is_keto: {
-            type: DataTypes.BOOLEAN,
-        }, 
     },
-        
     {
         sequelize,
         timestamps: false, 
         freezeTablename: true,
         underscored: true, 
-        modelName: 'Ingredient',
+        modelName: 'User',
     },
 )
