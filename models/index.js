@@ -27,12 +27,21 @@ Comment.belongsTo(User, {
 });
 // ==== Ingredient/Recipe ========
 
-Recipe.hasMany(Ingredient, {
-});
+Recipe.hasMany(Ingredient);
 
-Ingredient.belongsTo(Recipe, {
-    foreignKey: "post_id",
+Ingredient.belongsTo(Recipe);
+
+//=== Recipe/Comment ========
+
+Recipe.hasMany(Comment, {
+    foreignKey: "recipe_id",
     onDelete: "SET NULL"
 });
+
+Comment.belongsTo(Recipe, {
+    foreignKey: "recipe_id",
+    onDelete: "SET NULL"
+});
+
 
 module.exports = { User, Ingredient, Comment, Recipe };
