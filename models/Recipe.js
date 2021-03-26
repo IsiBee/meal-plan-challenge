@@ -27,7 +27,7 @@ Recipe.init(
 
         servings: {
             type: DataTypes.INTEGER,
-            allowNull: true,
+            allowNull: false,
         },
 
         prep_time:{
