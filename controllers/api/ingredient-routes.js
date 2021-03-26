@@ -12,27 +12,27 @@ router.get('/', (req, res) => {
             "is_vegan",
             "is_keto"
         ],
-        include: [
-            // maybe this will allow searching by ingredients?
-            {
-                model: Recipe,
-                attributes: [
-                    "id",
-                    "recipe_name",
-                    "servings",
-                    "is_spicy",
-                    "user_id"
-                ],
-                include: {
-                    model: User,
-                    attributes: ["username"]
-                }
-            },
-            {
-                model: User,
-                attributes: ["username"]
-            }
-        ]
+        // include: [
+        //     // maybe this will allow searching by ingredients?
+        //     {
+        //         model: Recipe,
+        //         attributes: [
+        //             "id",
+        //             "recipe_name",
+        //             "servings",
+        //             "is_spicy",
+        //             "user_id"
+        //         ],
+        //         include: {
+        //             model: User,
+        //             attributes: ["username"]
+        //         }
+        //     },
+        //     {
+        //         model: User,
+        //         attributes: ["username"]
+        //     }
+        // ]
     })
         .then(dbIngredientData => res.json(dbIngredientData))
         .catch(err => res.status(500).json(err));
@@ -51,27 +51,27 @@ router.get("/:id", (req, res) => {
             "is_vegan",
             "is_keto"
         ],
-        include: [
-            // maybe this will allow searching by ingredients?
-            {
-                model: Recipe,
-                attributes: [
-                    "id",
-                    "recipe_name",
-                    "servings",
-                    "is_spicy",
-                    "user_id"
-                ],
-                include: {
-                    model: User,
-                    attributes: ["username"]
-                }
-            },
-            {
-                model: User,
-                attributes: ["username"]
-            }
-        ]
+        // include: [
+        //     // maybe this will allow searching by ingredients?
+        //     {
+        //         model: Recipe,
+        //         attributes: [
+        //             "id",
+        //             "recipe_name",
+        //             "servings",
+        //             "is_spicy",
+        //             "user_id"
+        //         ],
+        //         include: {
+        //             model: User,
+        //             attributes: ["username"]
+        //         }
+        //     },
+        //     {
+        //         model: User,
+        //         attributes: ["username"]
+        //     }
+        // ]
     })
         .then(dbIngredientData => {
             if(!dbIngredientData) return res.status(404).json({ message: "No ingredient found with this id" });

@@ -27,9 +27,9 @@ Comment.belongsTo(User, {
 });
 // ==== Ingredient/Recipe ========
 
-Recipe.hasMany(Ingredient);
+// Recipe.hasMany(Ingredient);
 
-Ingredient.belongsTo(Recipe);
+// Ingredient.hasMany(Recipe);
 
 //=== Recipe/Comment ========
 

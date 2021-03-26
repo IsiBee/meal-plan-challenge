@@ -18,14 +18,14 @@ Comment.init(
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: "User",
+                model: "user",
                 key: "id"
             }
         },
         recipe_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: "Recipe",
+                model: "recipe",
                 key: "id"
             }
         }
@@ -34,7 +34,8 @@ Comment.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: "Comment"
+        modelName: "comment",
+        tableName: "comment"
     }
 );
 module.exports = Comment;
