@@ -20,9 +20,14 @@ Recipe.init(
             allowNull: false,
         },
         
-        description_id:{
+        description:{
             type: DataTypes.STRING, 
             allowNull: false,
+        },
+
+        servings: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
         },
 
         prep_time:{
@@ -50,6 +55,13 @@ Recipe.init(
             allowNull: true,
         },
    
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "User",
+                key: "id"
+            }
+        },
     },
     {
         sequelize,
