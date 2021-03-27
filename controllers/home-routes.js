@@ -1,13 +1,11 @@
 const router = require("express").Router();
+const sequelize = require("../config/connection");
 const { Recipe, User, Comment, Ingredient } = require("../models");
 const withAuth = require("../utils/auth");
 
-// GET recipes user created "/dashboard"
-router.get("/", withAuth, (req, res) => {
+// render recipes on homepage "/"
+router.get("/", (req, res) => {
     Recipe.findAll({
-        where: {
-            user_id: req.session.user_id
-        },
         attributes: [
             "id",
             "recipe_name",
@@ -22,10 +20,11 @@ router.get("/", withAuth, (req, res) => {
             // "weekday",
             "user_id"
         ],
+        order: [["created_at", "DESC"]],
         include: [
             {
                 model: Comment,
-                attributes: ["id", "comment_text", "recipe", "user_id", "created_at"],
+                attributes: ["id", "comment_text", "recipe_id", "user_id", "created_at"],
                 include: {
                     model: User,
                     attributes: ["username"]
@@ -39,13 +38,27 @@ router.get("/", withAuth, (req, res) => {
     })
         .then(dbRecipeData => {
             const recipes = dbRecipeData.map(recipe => recipe.get({ plain: true }));
-            res.render("dashboard", { recipes, loggedIn: true });
+
+            res.render("homepage", {
+                recipes,
+                loggedIn: req.session.loggedIn
+            });
         })
         .catch(err => res.status(500).json(err));
 });
 
-// user clicks edit recipe link on dashboard "/dashboard/edit/:id"
-router.get("/edit/:id", withAuth, (req, res) => {
+// render login page "/login"
+router.get("/login", (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect("/dashboard");
+        return;
+    }
+
+    res.render("login");
+});
+
+// render single-recipe page "/recipe/:id"
+router.get("/recipe/:id", withAuth, (req, res) => {
     Recipe.findOne({
         where: {
             id: req.params.id
@@ -81,15 +94,15 @@ router.get("/edit/:id", withAuth, (req, res) => {
     })
         .then(dbRecipeData => {
             if (!dbRecipeData) {
-                res.status(404).end();
+                res.status(404).json({ message: "No recipe found with this id" });
                 return;
             }
 
             const recipe = dbRecipeData.get({ plain: true });
 
-            res.render("edit-recipe", {
+            res.render("single-recipe", {
                 recipe,
-                loggedIn: true
+                loggedIn: req.session.loggedIn
             });
         })
         .catch(err => res.status(500).json(err));
