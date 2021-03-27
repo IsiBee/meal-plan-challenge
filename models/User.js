@@ -34,14 +34,9 @@ User.init(
         sequelize,
         timestamps: false,
         freezeTablename: true,
-<<<<<<< HEAD
         underscored: true,
         modelName: 'user',
-=======
-        underscored: true, 
-        modelName: 'user',
         tableName: 'user'
->>>>>>> cc940df5ee923c337cc41e95e256d39fdb43eb16
     },
 
 )

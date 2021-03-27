@@ -41,14 +41,9 @@ Ingredient.init(
         sequelize,
         timestamps: false,
         freezeTablename: true,
-<<<<<<< HEAD
         underscored: true,
-        modelName: 'Ingredient',
-=======
-        underscored: true, 
         modelName: 'ingredient',
         tableName: 'ingredient'
->>>>>>> cc940df5ee923c337cc41e95e256d39fdb43eb16
     },
 
 );
