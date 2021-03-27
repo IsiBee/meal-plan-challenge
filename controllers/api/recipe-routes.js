@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const { Recipe, User, Comment } = require('../../models');
 
+const chalk = require('chalk');
+const log = console.log;
+
 // GET all recipes ".../api/recipes"
 router.get("/", (req, res) => {
     Recipe.findAll({
@@ -14,8 +17,8 @@ router.get("/", (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            "ingredient_id",
-            "weekday",
+            // "ingredient_id",
+            // "weekday",
             "user_id"
         ],
         order: [["created_at", "DESC"]],
@@ -58,8 +61,8 @@ router.get("/:id", (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            "ingredient_id",
-            "weekday",
+            // "ingredient_id",
+            // "weekday",
             "user_id"
         ],
         include: [
@@ -96,7 +99,7 @@ router.post("/", (req, res) => {
     // expects {
     //     recipe_name: "Mac & Cheese",
     //     description: "the easiest pasta",
-    //     servings: 2
+    //     servings: 2,
     //     prep_time: "3 minutes",
     //     cook_time: "20 - 30 minutes",
     //     cooking_instructions: "follow box instructions",
@@ -111,20 +114,25 @@ router.post("/", (req, res) => {
 
     //     user_id: 1
     // }
+
     Recipe.create({
         recipe_name: req.body.recipe_name,
         description: req.body.description,
+        servings: req.body.servings,
         prep_time: req.body.prep_time,
         cook_time: req.body.cook_time,
         cooking_instructions: req.body.cooking_instructions,
         is_spicy: req.body.is_spicy,
         
         // check back on these
-        ingredient_id: req.body.ingredient_id,
-        weekday: req.body.weekday,
+        // ingredient_id: req.body.ingredient_id,
+        // weekday: req.body.weekday,
 
         // get user_id from session
         user_id: req.session.user_id
+
+        // FOR INSOMNIA CORE TESTING
+        // user_id: req.body.user_id
     })
         .then(dbRecipeData => res.json(dbRecipeData))
         .catch(err => res.status(500).json(err));
@@ -134,8 +142,8 @@ router.post("/", (req, res) => {
 // UPVOTE route
 
 // PUT update recipe ".../api/recipes/:id"
-router.put('/api/recipes/:id', (req, res) => {
-    Recipe.update(
+router.put('/:id', (req, res) => {
+    Recipe.update(req.body,
         {
             recipe_name: req.body.recipe_name,
             description: req.body.description,
@@ -146,8 +154,13 @@ router.put('/api/recipes/:id', (req, res) => {
             is_spicy: req.body.is_spicy,
             
             // check back on these
-            ingredient_id: req.body.ingredient_id,
-            weekday: req.body.weekday,    
+            // ingredient_id: req.body.ingredient_id,
+            // weekday: req.body.weekday,
+
+            user_id: req.session.user_id
+
+            // FOR INSOMNIA CORE TESTING
+            // user_id: req.body.user_id
         },
         {
             where: { id: req.params.id }

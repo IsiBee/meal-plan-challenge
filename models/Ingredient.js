@@ -15,7 +15,7 @@ Ingredient.init(
             autoIncrement: true,
         },
 
-        name: {
+        ingredient_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -42,7 +42,8 @@ Ingredient.init(
         timestamps: false, 
         freezeTablename: true,
         underscored: true, 
-        modelName: 'Ingredient',
+        modelName: 'ingredient',
+        tableName: 'ingredient'
     },
 
 );

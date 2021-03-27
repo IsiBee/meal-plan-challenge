@@ -35,7 +35,8 @@ User.init(
         timestamps: false, 
         freezeTablename: true,
         underscored: true, 
-        modelName: 'User',
+        modelName: 'user',
+        tableName: 'user'
     },
 
 )
