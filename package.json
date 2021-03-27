@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node seeds/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/IsiBee/meal-plan-challenge#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "chalk": "^4.1.0",
     "connect-session-sequelize": "^7.1.1",
     "darkmode-js": "^1.5.7",
     "dotenv": "^8.2.0",
