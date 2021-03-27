@@ -27,8 +27,8 @@ router.get("/:id", (req, res) => {
                     "cook_time",
                     "cooking_instructions",
                     "is_spicy",
-                    "ingredient_id",
-                    "weekday",
+                    // "ingredient_id",
+                    // "weekday",
                     "user_id"
                 ]
             },
