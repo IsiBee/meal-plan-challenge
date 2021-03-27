@@ -3,7 +3,7 @@ const { Recipe, User, Comment, Ingredient } = require("../models");
 const withAuth = require("../utils/auth");
 
 // GET recipes user created "/dashboard"
-router.get("/", withAuth, (req, res) => {
+router.get("/", /*withAuth,*/ (req, res) => {
     Recipe.findAll({
         where: {
             user_id: req.session.user_id
@@ -25,7 +25,7 @@ router.get("/", withAuth, (req, res) => {
         include: [
             {
                 model: Comment,
-                attributes: ["id", "comment_text", "recipe", "user_id", "created_at"],
+                attributes: ["id", "comment_text", "recipe_id", "user_id", "created_at"],
                 include: {
                     model: User,
                     attributes: ["username"]
@@ -45,7 +45,7 @@ router.get("/", withAuth, (req, res) => {
 });
 
 // user clicks edit recipe link on dashboard "/dashboard/edit/:id"
-router.get("/edit/:id", withAuth, (req, res) => {
+router.get("/edit/:id", /*withAuth,*/ (req, res) => {
     Recipe.findOne({
         where: {
             id: req.params.id
