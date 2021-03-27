@@ -1,34 +1,51 @@
 // Ingredient DB Model
 
-const {Model, DataTypes } = require ('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
-class Ingredient extends Model {}
+class Ingredient extends Model { }
 
 Ingredient.init(
     {
         id: {
             type: DataTypes.INTEGER,
-            allowNull: false, 
-            primaryKey: true, 
+            allowNull: false,
+            primaryKey: true,
             autoIncrement: true,
         },
 
-        name: {
+        ingredient_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        
-        // IsGlutenFree: {
-        //     type
-        // }
+
+        is_gluten_free: {
+            type: DataTypes.BOOLEAN,
+        },
+
+        is_vegetarian: {
+            type: DataTypes.BOOLEAN,
+        },
+
+        is_vegan: {
+            type: DataTypes.BOOLEAN,
+        },
+
+        is_keto: {
+            type: DataTypes.BOOLEAN,
+        },
     },
+
     {
         sequelize,
-        timestamps: false, 
+        timestamps: false,
         freezeTablename: true,
-        underscored: true, 
-        modelName: 'Ingredient',
+        underscored: true,
+        modelName: 'ingredient',
+        tableName: 'ingredient'
     },
-)
+
+);
+
+module.exports = Ingredient;

@@ -11,65 +11,62 @@
 </head>
 
 <body>
-
-    <body>
-        <div class="row">
-            <div class="col-2 nav-bar bg-light border">
-                <h4 class="p-2 bg-light">Navigate</h4>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <p class="p-3 text-primary bg-white">Home</p>
-                    </li>
-                    <li class="nav-item accordion pb-2" id="myDashboard">
-                        <p class="accordion-header" id="dashboardButton">
-                            <button class="accordion-button collapsed text-primary" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#dashboardCollapse" aria-expanded="true"
-                                aria-controls="dashboardCollapse">
-                                My Dashboard
-                            </button>
-                        </p>
-                        <div id="dashboardCollapse" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                            data-bs-parent="#myDashboard">
-                            <ul class="list-group accordion-body">
-                                <li class="list-group-item"><a href=#>My Recipes</a></li>
-                                <li class="list-group-item"><a href=#>My Ingredients</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item accordion pb-2" id="build">
-                        <p class="accordion-header" id="buildMeal">
-                            <button class="accordion-button collapsed text-primary" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseBuild" aria-expanded="true"
-                                aria-controls="collapseBuild">
-                                Build Meal Plan
-                            </button>
-                        </p>
-                        <div id="collapseBuild" class="accordion-collapse collapse" aria-labelledby="buildMeal"
-                            data-bs-parent="#build">
-                            <ul class="list-group accordion-body">
-                                <li class="list-group-item"><a href=#>Add Recipes</a></li>
-                                <li class="list-group-item"><a href=#>Add Ingredients</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item text-primary">
-                        <p class="p-3 bg-white">Logout</p>
-                    </li>
-                </ul>
-            </div>
-            <main>
-                {{{ body }}}
-            </main>
+    <div class="row">
+        <div class="col-2 nav-bar bg-light border">
+            <h4 class="p-2 bg-light">Navigate</h4>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="p-3 text-primary bg-white">Home</a>
+                </li>
+                <li class="nav-item accordion pb-2" id="myDashboard">
+                    <p class="accordion-header" id="dashboardButton">
+                        <a class="accordion-button collapsed text-primary" href="/dashboard" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#dashboardCollapse" aria-expanded="true"
+                            aria-controls="dashboardCollapse">
+                            My Dashboard
+                        </a>
+                    </p>
+                    <div id="dashboardCollapse" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#myDashboard">
+                        <ul class="list-group accordion-body">
+                            <li class="list-group-item"><a href="/myRecipes">My Recipes</a></li>
+                            <li class="list-group-item"><a href="/myIngredients">My Ingredients</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item accordion pb-2" id="build">
+                    <p class="accordion-header" id="buildMeal">
+                        <button class="accordion-button collapsed text-primary" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseBuild" aria-expanded="true" aria-controls="collapseBuild">
+                            Build Meal Plan
+                        </button>
+                    </p>
+                    <div id="collapseBuild" class="accordion-collapse collapse" aria-labelledby="buildMeal"
+                        data-bs-parent="#build">
+                        <ul class="list-group accordion-body">
+                            <li class="list-group-item"><a href="/addRecipes">Add Recipes</a></li>
+                            <li class="list-group-item"><a href="/addIngredients">Add Ingredients</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item text-primary">
+                    <p class="p-3 bg-white">Logout</p>
+                </li>
+            </ul>
         </div>
-        <footer>
-            Bon Apétit!
-        </footer>
-        {{#if loggedIn}}
-        <script src="/js/logout.js"></script>
-        {{/if}}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-            crossorigin="anonymous"></script>
-    </body>
+        <main>
+            {{{ body }}}
+        </main>
+    </div>
+    <footer>
+        Bon Apétit!
+    </footer>
+    {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+</body>
 
 </html>

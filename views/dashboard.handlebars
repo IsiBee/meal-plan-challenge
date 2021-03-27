@@ -1,5 +1,5 @@
 <div class="col-8 pt-5">
-    <h3>Your Meals for the Week</h3>
+    <h3 class="py-2">Your Meals for the Week</h3>
     <table class="table table-bordered">
         <thead>
             <tr class="text-center">
@@ -25,19 +25,3 @@
         </tbody>
     </table>
 </div>
-
-{{#if posts.length}}
-<section>
-    <h2>Your Posts</h2>
-    <ol>
-        {{#each posts as |post|}}
-        <li>
-            {{> post-info post}}
-            <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
-        </li>
-        {{/each}}
-    </ol>
-</section>
-{{/if}}
-
-<script src="/js/add-post.js"></script>
