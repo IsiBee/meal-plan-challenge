@@ -143,7 +143,7 @@ router.post("/", (req, res) => {
 
 // PUT update recipe ".../api/recipes/:id"
 router.put('/:id', (req, res) => {
-    Recipe.update(req.body,
+    Recipe.update(
         {
             recipe_name: req.body.recipe_name,
             description: req.body.description,
@@ -163,11 +163,17 @@ router.put('/:id', (req, res) => {
             // user_id: req.body.user_id
         },
         {
+            individualHooks: true,
             where: { id: req.params.id }
         }
     )
         .then(dbRecipeData => {
-            if (!dbRecipeData) return res.status(404).json({ message: "No recipe found with this id" });
+            log(chalk.red(dbRecipeData));
+
+            if (!dbRecipeData) {
+                res.status(404).json({ message: "No recipe found with this id" });
+                return 
+            }
 
             res.json(dbRecipeData);
         })
