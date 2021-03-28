@@ -87,7 +87,35 @@ router.get("/:id", (req, res) => {
         ]
     })
         .then(dbRecipeData => {
-            if (!dbRecipeData) return res.status(404).json({ message: "No recipe found with this id"});
+            if (!dbRecipeData) return res.status(404).json({ message: "No recipe found with this id" });
+
+            console.log(chalk.blueBright(JSON.stringify(dbRecipeData)));
+            res.json(dbRecipeData);
+        })
+        .catch(err => res.status(500).json(err));
+});
+
+// Request to query recipes database for a recipe
+router.get("/search/:name", (req, res) => {
+    Recipe.findAll({
+        where: { recipe_name: req.params.name },
+        attributes: [
+            "id",
+            "recipe_name",
+            "description",
+            "created_at",
+            "servings",
+            "prep_time",
+            "cook_time",
+            "cooking_instructions",
+            "is_spicy",
+            // "ingredient_id",
+            // "weekday",
+            "user_id"
+        ],
+    })
+        .then(dbRecipeData => {
+            if (!dbRecipeData) return res.status(404).json({ message: "No recipe found with this name" });
 
             res.json(dbRecipeData);
         })
@@ -123,7 +151,7 @@ router.post("/", (req, res) => {
         cook_time: req.body.cook_time,
         cooking_instructions: req.body.cooking_instructions,
         is_spicy: req.body.is_spicy,
-        
+
         // check back on these
         // ingredient_id: req.body.ingredient_id,
         // weekday: req.body.weekday,
@@ -152,7 +180,7 @@ router.put('/:id', (req, res) => {
             cook_time: req.body.cook_time,
             cooking_instructions: req.body.cooking_instructions,
             is_spicy: req.body.is_spicy,
-            
+
             // check back on these
             // ingredient_id: req.body.ingredient_id,
             // weekday: req.body.weekday,

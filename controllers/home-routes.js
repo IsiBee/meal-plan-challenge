@@ -50,7 +50,7 @@ router.get("/", (req, res) => {
 // render login page "/login"
 router.get("/login", (req, res) => {
     if (req.session.loggedIn) {
-        res.redirect("/dashboard");
+        res.redirect("/");
         return;
     }
 

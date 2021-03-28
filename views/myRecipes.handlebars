@@ -1,4 +1,9 @@
-{{#if loggedIn}}
+{{#unless recipes.length}}
+<div class="subtitle">
+    You have not added any recipes. Click the add recipe button to get started
+</div>
+{{/unless}}
+{{#each recipe}}
 <article class="recipe">
     <div class="title">
         {{recipe_name}}
@@ -7,4 +12,4 @@
         {{description}}
     </div>
 </article>
-{{/if}}
+{{/each}}

@@ -3,7 +3,49 @@ const { Recipe, User, Comment, Ingredient } = require("../models");
 const withAuth = require("../utils/auth");
 
 // GET recipes user created "/dashboard"
-router.get("/", withAuth, (req, res) => {
+router.get("/", (req, res) => {
+    Recipe.findAll({
+        // where: {
+        //    user_id: req.session.user_id
+        // },
+        attributes: [
+            "id",
+            "recipe_name",
+            "description",
+            "created_at",
+            "servings",
+            "prep_time",
+            "cook_time",
+            "cooking_instructions",
+            "is_spicy",
+            // "ingredient_id",
+            // "weekday",
+            "user_id"
+        ],
+        include: [
+            {
+                model: Comment,
+                attributes: ["id", "comment_text", "recipe_id", "user_id", "created_at"],
+                include: {
+                    model: User,
+                    attributes: ["username"]
+                }
+            },
+            {
+                model: User,
+                attributes: ["username"]
+            }
+        ]
+    })
+        .then(dbRecipeData => {
+            const recipes = dbRecipeData.map(recipe => recipe.get({ plain: true }));
+            res.render("dashboard", { recipes, loggedIn: true });
+        })
+        .catch(err => res.status(500).json(err));
+});
+
+// GET recipes user created "/dashboard"
+router.get("/", (req, res) => {
     Recipe.findAll({
         where: {
             user_id: req.session.user_id
@@ -39,7 +81,7 @@ router.get("/", withAuth, (req, res) => {
     })
         .then(dbRecipeData => {
             const recipes = dbRecipeData.map(recipe => recipe.get({ plain: true }));
-            res.render("dashboard", { recipes, loggedIn: true });
+            res.render("myRecipes", { recipes, loggedIn: true });
         })
         .catch(err => res.status(500).json(err));
 });
