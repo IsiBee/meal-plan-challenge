@@ -57,8 +57,18 @@ router.get("/login", (req, res) => {
     res.render("login");
 });
 
+// render login page "/login"
+router.get("/sign-up", (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect("/");
+        return;
+    }
+
+    res.render("sign-up");
+});
+
 // render single-recipe page "/recipe/:id"
-router.get("/recipe/:id", /*withAuth,*/ (req, res) => {
+router.get("/recipe/:id", /*withAuth,*/(req, res) => {
     Recipe.findOne({
         where: {
             id: req.params.id
