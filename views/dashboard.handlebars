@@ -1,43 +1,87 @@
-<div class="col-8 pt-5">
-    <h3>Your Meals for the Week</h3>
-    <table class="table table-bordered">
-        <thead>
-            <tr class="text-center">
-                <th scope="col">Sunday</th>
-                <th scope="col">Monday</th>
-                <th scope="col">Tuesday</th>
-                <th scope="col">Wednesday</th>
-                <th scope="col">Thursday</th>
-                <th scope="col">Friday</th>
-                <th scope="col">Saturday</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="p-5"></td>
-                <td class="p-5"></td>
-                <td class="p-5"></td>
-                <td class="p-5"></td>
-                <td class="p-5"></td>
-                <td class="p-5"></td>
-                <td class="p-5"></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<hero class="hero">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-4">
+                <h3 class="py-2">Your Planned Meals</h3>
+            </div>
+            <div class="col-4">
+                <h3 class="py-2">Add/Change Recipes</h3>
+            </div>
+            <div class="col-4">
+                <h3 class="py-2">Buy Ingredients</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">WeekDay</th>
+                            <th scope="col">Recipes</th>
 
-{{#if posts.length}}
-<section>
-    <h2>Your Posts</h2>
-    <ol>
-        {{#each posts as |post|}}
-        <li>
-            {{> post-info post}}
-            <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
-        </li>
-        {{/each}}
-    </ol>
-</section>
-{{/if}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Sunday</th>
+                            <td class="p-5"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Monday</th>
+                            <td class="p-5"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tuesday</th>
+                            <td class="p-5"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Wednesday</th>
+                            <td class="p-5"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Thursday</th>
+                            <td class="p-5"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Friday</th>
+                            <td class="p-5"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Saturday</th>
+                            <td class="p-5"></td>
+                        </tr>
+                    </tbody>
+                </table>
 
-<script src="/js/add-post.js"></script>
+            </div>
+            <div class="col-4">
+                <form class="search-recipe-form">
+                    <div class="row no-gutters">
+                        <div class="col-8">
+                            <input class="form-control" id="searchRecipes" placeholder="Search" aria-label="Search">
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </div>
+                    </div>
+
+
+                </form>
+
+                <section>
+                    <ul class="recipe-list list-group">
+                        {{#each recipes as |recipe|}}
+                        <li class="list-group-item">
+                            {{> recipe-info recipe}}
+                        </li>
+                        {{/each}}
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</hero>
+
+<script src="/js/search-recipe.js"></script>
