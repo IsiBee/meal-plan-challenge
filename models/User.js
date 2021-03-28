@@ -1,18 +1,18 @@
 // USER DB Model
 
-const {Model, DataTypes } = require ('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
-class User extends Model {}
+class User extends Model { }
 
 User.init(
     {
         id: {
             type: DataTypes.INTEGER,
-            allowNull: false, 
-            primaryKey: true, 
-            autoIncrement: true, 
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true,
         },
 
         username: {
@@ -32,9 +32,9 @@ User.init(
     },
     {
         sequelize,
-        timestamps: false, 
+        timestamps: false,
         freezeTablename: true,
-        underscored: true, 
+        underscored: true,
         modelName: 'user',
         tableName: 'user'
     },
