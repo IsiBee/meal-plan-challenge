@@ -1,36 +1,24 @@
-<p>Drag your recipe into whatever day of the week. Enjoy!</p>
-<div class="container cal" id="monday">
-        Monday
-</div>
-<div class="container cal" id="Tuesday">
-    Tuesday
-</div>
-<div class="container cal" id="Tuesday">
-    Wednesday
-</div>
-<div class="container cal" id="Tuesday">
-    Thursday
-</div>
-<div class="container cal" id="Tuesday">
-    Friday
-</div>
-<div class="container cal" id="Tuesday">
-    Saturday
-</div>
-<div class="container cal" id="Tuesday">
-    Sunday
+{{#if loggedIn}}
+<div class="container">
+    <h2>Go to your dashboard to start planning</h2>
 </div>
 
-<ul class="recipe-list">
-    {{#each recipes as |recipe|}}
-    <li>
-        {{> recipe-info recipe}}
-    </li>
-    {{/each}}
-</ul>
+<hero class="jumbotron">
+    <div class="container">
+        <a class="btn btn-warning" href="./dashboard" role="button">Dashboard</a>
 
+    </div>
+</hero>
+{{/if}}
 
+{{#unless loggedIn}}
+<div class="container">
+    <h2>Login to start meal planning</h2>
+</div>
 
-    <link rel="stylesheet" href="/css/container.css">
-
-        <script src="/js/container.js"></script>
+<hero class="jumbotron bg-light">
+    <div class="container">
+        <a class="btn btn-warning" href="./login" role="button">Login</a>
+    </div>
+</hero>
+{{/unless}}
