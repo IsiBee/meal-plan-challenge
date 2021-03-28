@@ -1,1 +1,7 @@
-<div>Homepage</div>
+<ul class="recipe-list">
+    {{#each recipes as |recipe|}}
+    <li>
+        {{> recipe-info recipe}}
+    </li>
+    {{/each}}
+</ul>

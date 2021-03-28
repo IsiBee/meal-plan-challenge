@@ -39,7 +39,7 @@ router.get("/", /*withAuth,*/ (req, res) => {
     })
         .then(dbRecipeData => {
             const recipes = dbRecipeData.map(recipe => recipe.get({ plain: true }));
-            res.render("dashboard", { recipes, loggedIn: true });
+            res.render("myRecipes", { recipes, loggedIn: true });
         })
         .catch(err => res.status(500).json(err));
 });
