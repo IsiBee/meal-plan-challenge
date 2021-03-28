@@ -1,4 +1,23 @@
-<article class="recipe">
+    <link rel="stylesheet" href="/css/container.css">
+     
+
+<div class="container">
+        <div class="draggable" data-value={{recipe_name}} draggable="true"> 
+         
+            <div class="title">
+                {{recipe_name}}
+            </div>
+            <div class="subtitle">
+                {{description}}
+            </div>
+            <div>
+                Prep Time: {{prep_time}}
+            </div>
+        </div>
+        {{!-- <p class="draggable" draggable="true">2</p> --}}
+    </div>
+
+{{!-- <article class="recipe">
     <div class="title">
         {{recipe_name}}
     </div>
@@ -8,4 +27,10 @@
     <div>
         Prep Time: {{prep_time}}
     </div>
-</article>
+</article> --}}
+
+
+
+
+   
+    <script src="/js/container.js"></script>
