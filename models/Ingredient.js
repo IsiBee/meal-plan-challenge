@@ -1,17 +1,17 @@
 // Ingredient DB Model
 
-const {Model, DataTypes } = require ('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
-class Ingredient extends Model {}
+class Ingredient extends Model { }
 
 Ingredient.init(
     {
         id: {
             type: DataTypes.INTEGER,
-            allowNull: false, 
-            primaryKey: true, 
+            allowNull: false,
+            primaryKey: true,
             autoIncrement: true,
         },
 
@@ -34,14 +34,14 @@ Ingredient.init(
 
         is_keto: {
             type: DataTypes.BOOLEAN,
-        }, 
+        },
     },
-        
+
     {
         sequelize,
-        timestamps: false, 
+        timestamps: false,
         freezeTablename: true,
-        underscored: true, 
+        underscored: true,
         modelName: 'ingredient',
         tableName: 'ingredient'
     },
