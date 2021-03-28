@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+}
+
+.container {
+    /* background-color: lightgrey; */
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.draggable {
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid lightgrey;
+    cursor: move;
+    color: black;
+    width:33%;
+}
+
+.draggable.dragging {
+    opacity: 0.5;
+}
+
+li{
+    color: white;
+}
+
+.cal{
+    font-weight: bold;
+      background-color: lightgrey;
+  
+}

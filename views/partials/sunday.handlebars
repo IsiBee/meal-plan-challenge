@@ -1,3 +1,16 @@
-<div class "col-8 pt-5">
-    <h3>Sunday</h3>
+{{!-- drag and drop in and then store recipies--}}
+
+<div class "container">
+    {{#if recipies.length}} 
+    <section>
+        <ul>
+            {{#each recipies as |recipie|}}
+            <li>
+                 {{> recipie-info recipie}}
+            <a href="/dashboard/edit/{{recipie.id}}" class="edit-link">edit recipie</a>
+            </li>
+            {{/each}}
+        </ul>
+    </section>
+     {{/if}} 
 </div>
