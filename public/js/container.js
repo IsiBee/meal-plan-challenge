@@ -21,7 +21,6 @@ document.querySelectorAll(".container").forEach(container => {
 
         if (afterElement == null) {
             container.appendChild(draggable);
-
         } else {
             container.insertBefore(draggable, afterElement);
         }
