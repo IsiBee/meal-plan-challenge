@@ -24,10 +24,11 @@ router.get("/", withAuth, (req, res) => {
     })
         .then(dbRecipeData => {
             const recipes = dbRecipeData.map(recipe => recipe.get({ plain: true }));
-
+            console.log(recipes)
             res.render("dashboard", {
                 recipes,
-                loggedIn: req.session.loggedIn
+                loggedIn: req.session.loggedIn,
+                user_id:req.session.user_id
             });
         })
         .catch(err => res.status(500).json(err));
