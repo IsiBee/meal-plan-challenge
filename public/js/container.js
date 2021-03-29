@@ -1,9 +1,11 @@
 // const draggables = document.querySelectorAll(".draggable");
 // const containers = document.querySelectorAll(".container");
 
+
 document.querySelectorAll(".draggable").forEach(draggable => {
     draggable.addEventListener("dragstart", () => {
         draggable.classList.add("dragging");
+        
     });
 
     draggable.addEventListener("dragend", () => {
@@ -18,11 +20,14 @@ document.querySelectorAll(".container").forEach(container => {
         const afterElement = getDragAfterElement(container, event.clientY);
 
         const draggable = document.querySelector(".dragging");
+      
 
         if (afterElement == null) {
             container.appendChild(draggable);
+          
         } else {
             container.insertBefore(draggable, afterElement);
+           
         }
     });
 });
