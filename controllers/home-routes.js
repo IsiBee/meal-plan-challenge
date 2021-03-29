@@ -66,7 +66,7 @@ router.get("/sign-up", (req, res) => {
 });
 
 // render single-recipe page "/recipe/:id"
-router.get("/recipe/:id", /*withAuth,*/(req, res) => {
+router.get("/recipe/:id", (req, res) => {
     Recipe.findOne({
         where: {
             id: req.params.id
