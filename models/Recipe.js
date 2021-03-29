@@ -45,14 +45,6 @@ Recipe.init(
             allowNull: false,
         },
 
-        // ingredient_id:{
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: "ingredient",
-        //         key: "id"
-        //     }
-        // },
-
         is_spicy:{
             type: DataTypes.BOOLEAN,
             allowNull: true,
