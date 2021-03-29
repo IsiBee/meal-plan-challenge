@@ -42,6 +42,17 @@ const recipeData = [
         is_spicy: false,
         
         user_id: 2
+    },
+    {
+        recipe_name: "Chicken",
+        description: "favorite dinner",
+        servings: 4,
+        prep_time: "1 hour",
+        cook_time: "50 minutes",
+        cooking_instructions: "salt and peper your chicken, throw it into the oven for 50 minuties at 400F, and enjoy!",
+        is_spicy: false,
+        
+        user_id: 1
     }
 ];
 
