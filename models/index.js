@@ -1,8 +1,7 @@
 const User = require("./User");
-
+const MealPlan = require("./Meal-Plan");
 const Ingredient = require("./Ingredient");
-
-const Comment = require("./comment");
+const Comment = require("./Comment");
 const Recipe = require("./Recipe");
 
 // ==== User/Recipe ===========
@@ -14,8 +13,16 @@ Recipe.belongsTo(User, {
     foreignKey: "user_id",
     onDelete: "SET NULL"
 });
-// ==== User/Comment ========
 
+// ==== User/MealPlan ===========
+User.hasMany(MealPlan);
+MealPlan.belongsTo(User);
+
+// ==== MealPlan/Recipe ===========
+MealPlan.hasMany(Recipe);
+Recipe.belongsToMany(MealPlan);
+
+// ==== User/Comment ========
 User.hasMany(Comment, {
     foreignKey: "user_id",
     onDelete: "SET NULL"
@@ -25,11 +32,10 @@ Comment.belongsTo(User, {
     foreignKey: "user_id",
     onDelete: "SET NULL"
 });
+
 // ==== Ingredient/Recipe ========
-
-// Recipe.hasMany(Ingredient);
-
-// Ingredient.hasMany(Recipe);
+Recipe.hasMany(Ingredient);
+Ingredient.belongsTo(Recipe);
 
 //=== Recipe/Comment ========
 
@@ -44,4 +50,4 @@ Comment.belongsTo(Recipe, {
 });
 
 
-module.exports = { User, Ingredient, Comment, Recipe };
+module.exports = { User, MealPlan, Ingredient, Comment, Recipe };

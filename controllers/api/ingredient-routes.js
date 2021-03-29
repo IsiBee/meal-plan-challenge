@@ -46,10 +46,11 @@ router.get("/:id", (req, res) => {
         attributes: [
             "id",
             "ingredient_name",
-            "is_gluten_free",
-            "is_vegetarian",
-            "is_vegan",
-            "is_keto"
+            "preparation",
+            // "is_gluten_free",
+            // "is_vegetarian",
+            // "is_vegan",
+            // "is_keto"
         ],
         // include: [
         //     // maybe this will allow searching by ingredients?
@@ -86,6 +87,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
     // expects {
     //     ingredient_name: "Cheddar",
+    //     preparation: "shredded",
     //     is_gluten_free: true,
     //     is_vegetarian: true,
     //     is_vegan: false,
@@ -93,10 +95,11 @@ router.post("/", (req, res) => {
     // }
     Ingredient.create({
         ingredient_name: req.body.ingredient_name,
-        is_gluten_free: req.body.is_gluten_free,
-        is_vegetarian: req.body.is_vegetarian,
-        is_vegan: req.body.is_vegan,
-        is_keto: req.body.is_keto
+        preparation: req.body.preparation,
+        // is_gluten_free: req.body.is_gluten_free,
+        // is_vegetarian: req.body.is_vegetarian,
+        // is_vegan: req.body.is_vegan,
+        // is_keto: req.body.is_keto
     })
         .then(dbIngredientData => res.json(dbIngredientData))
         .catch(err => res.status(500).json(err));
@@ -107,10 +110,11 @@ router.put("/:id", (req, res) => {
     Ingredient.update(
         {
             ingredient_name: req.body.ingredient_name,
-            is_gluten_free: req.body.is_gluten_free,
-            is_vegetarian: req.body.is_vegetarian,
-            is_vegan: req.body.is_vegan,
-            is_keto: req.body.is_keto    
+            preparation: req.body.preparation,
+            // is_gluten_free: req.body.is_gluten_free,
+            // is_vegetarian: req.body.is_vegetarian,
+            // is_vegan: req.body.is_vegan,
+            // is_keto: req.body.is_keto    
         },
         {
             where: { id: req.params.id }
