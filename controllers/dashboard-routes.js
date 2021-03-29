@@ -5,9 +5,9 @@ const withAuth = require("../utils/auth");
 // GET recipes user created "/dashboard"
 router.get("/", /*withAuth,*/ (req, res) => {
     Recipe.findAll({
-        where: {
-            user_id: req.session.user_id
-        },
+        // where: {
+        //     user_id: req.session.user_id
+        // },
         attributes: [
             "id",
             "recipe_name",
