@@ -16,12 +16,12 @@ document.querySelectorAll(".container").forEach(container => {
         event.preventDefault();
 
         const afterElement = getDragAfterElement(container, event.clientY);
-        // console.log(afterElement);
 
         const draggable = document.querySelector(".dragging");
 
         if (afterElement == null) {
             container.appendChild(draggable);
+
         } else {
             container.insertBefore(draggable, afterElement);
         }
@@ -38,7 +38,7 @@ function getDragAfterElement(container, y) {
         // console.log(offset);
 
         if (offset < 0 && offset > closest.offset) {
-            return { 
+            return {
                 offset: offset,
                 element: child
             }
