@@ -8,14 +8,14 @@ class MealPlan extends Model {}
 MealPlan.init(
     {
         id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             autoIncrement: true,
             primaryKey: true
         },
 
         recipe_id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: "recipe",
                 key: "id"
@@ -23,7 +23,7 @@ MealPlan.init(
         },
 
         user_id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: "user",
                 key: "id"

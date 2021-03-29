@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Ingredient, Recipe, User } = require('../../models');
+const { Ingredient, Recipe } = require('../../models');
 
 // GET all ingredients ".../api/ingredients"
 router.get('/', (req, res) => {
@@ -7,32 +7,17 @@ router.get('/', (req, res) => {
         attributes: [
             "id",
             "ingredient_name",
-            "is_gluten_free",
-            "is_vegetarian",
-            "is_vegan",
-            "is_keto"
+            "recipe_id"
         ],
-        // include: [
-        //     // maybe this will allow searching by ingredients?
-        //     {
-        //         model: Recipe,
-        //         attributes: [
-        //             "id",
-        //             "recipe_name",
-        //             "servings",
-        //             "is_spicy",
-        //             "user_id"
-        //         ],
-        //         include: {
-        //             model: User,
-        //             attributes: ["username"]
-        //         }
-        //     },
-        //     {
-        //         model: User,
-        //         attributes: ["username"]
-        //     }
-        // ]
+        include: [
+            {
+                model: Recipe,
+                attributes: [
+                    "id",
+                    "recipe_name"
+                ]
+            }
+        ]
     })
         .then(dbIngredientData => res.json(dbIngredientData))
         .catch(err => res.status(500).json(err));
@@ -47,32 +32,17 @@ router.get("/:id", (req, res) => {
             "id",
             "ingredient_name",
             "preparation",
-            // "is_gluten_free",
-            // "is_vegetarian",
-            // "is_vegan",
-            // "is_keto"
+            "recipe_id"
         ],
-        // include: [
-        //     // maybe this will allow searching by ingredients?
-        //     {
-        //         model: Recipe,
-        //         attributes: [
-        //             "id",
-        //             "recipe_name",
-        //             "servings",
-        //             "is_spicy",
-        //             "user_id"
-        //         ],
-        //         include: {
-        //             model: User,
-        //             attributes: ["username"]
-        //         }
-        //     },
-        //     {
-        //         model: User,
-        //         attributes: ["username"]
-        //     }
-        // ]
+        include: [
+            {
+                model: Recipe,
+                attributes: [
+                    "id",
+                    "recipe_name",
+                ]
+            }
+        ]
     })
         .then(dbIngredientData => {
             if(!dbIngredientData) return res.status(404).json({ message: "No ingredient found with this id" });
@@ -88,18 +58,12 @@ router.post("/", (req, res) => {
     // expects {
     //     ingredient_name: "Cheddar",
     //     preparation: "shredded",
-    //     is_gluten_free: true,
-    //     is_vegetarian: true,
-    //     is_vegan: false,
-    //     is_keto: true
+    //     recipe_id: 1
     // }
     Ingredient.create({
         ingredient_name: req.body.ingredient_name,
         preparation: req.body.preparation,
-        // is_gluten_free: req.body.is_gluten_free,
-        // is_vegetarian: req.body.is_vegetarian,
-        // is_vegan: req.body.is_vegan,
-        // is_keto: req.body.is_keto
+        recipe_id: req.body.recipe_id
     })
         .then(dbIngredientData => res.json(dbIngredientData))
         .catch(err => res.status(500).json(err));
@@ -111,10 +75,6 @@ router.put("/:id", (req, res) => {
         {
             ingredient_name: req.body.ingredient_name,
             preparation: req.body.preparation,
-            // is_gluten_free: req.body.is_gluten_free,
-            // is_vegetarian: req.body.is_vegetarian,
-            // is_vegan: req.body.is_vegan,
-            // is_keto: req.body.is_keto    
         },
         {
             where: { id: req.params.id }
