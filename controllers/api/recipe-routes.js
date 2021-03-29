@@ -53,6 +53,7 @@ router.get("/", (req, res) => {
         .then(dbRecipeData => res.json(dbRecipeData))
         .catch(err => res.status(500).json(err));
 });
+
 // Request to query recipes database for a recipe
 router.get("/search/:name", (req, res) => {
     Recipe.findAll({

@@ -14,13 +14,43 @@ Recipe.belongsTo(User, {
     onDelete: "SET NULL"
 });
 
+User.belongsToMany(Recipe, {
+    through: MealPlan,
+    as: "saved_recipes",
+    foreignKey: "user_id",
+    onDelete: "SET NULL"
+});
+
+Recipe.belongsToMany(User, {
+    through: MealPlan,
+    as: "saved_recipes",
+    foreignKey: "user_id",
+    onDelete: "SET NULL"
+});
+
 // ==== User/MealPlan ===========
-User.hasMany(MealPlan);
-MealPlan.belongsTo(User);
+User.hasMany(MealPlan, {
+    foreignKey: "user_id"
+});
+
+MealPlan.belongsTo(User, {
+    foreignKey: "user_id",
+    onDelete: "SET NULL"
+});
 
 // ==== MealPlan/Recipe ===========
-MealPlan.hasMany(Recipe);
-Recipe.belongsToMany(MealPlan);
+MealPlan.belongsTo(Recipe, {
+    foreignKey: "recipe_id",
+    onDelete: "SET NULL"
+});
+
+Recipe.hasMany(MealPlan, {
+    foreignKey: "recipe_id"
+});
+
+// ==== Ingredient/Recipe ========
+Recipe.hasMany(Ingredient);
+Ingredient.belongsTo(Recipe);
 
 // ==== User/Comment ========
 User.hasMany(Comment, {
@@ -32,10 +62,6 @@ Comment.belongsTo(User, {
     foreignKey: "user_id",
     onDelete: "SET NULL"
 });
-
-// ==== Ingredient/Recipe ========
-Recipe.hasMany(Ingredient);
-Ingredient.belongsTo(Recipe);
 
 //=== Recipe/Comment ========
 

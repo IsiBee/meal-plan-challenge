@@ -29,14 +29,6 @@ User.init(
             type: DataTypes.TEXT,
             allowNull: false,
         },
-
-        meal_plan: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: "meal_plan",
-                key: "id"
-            }
-        }
     },
     {
         sequelize,
