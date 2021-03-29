@@ -46,6 +46,32 @@ router.get("/", (req, res) => {
         .then(dbRecipeData => res.json(dbRecipeData))
         .catch(err => res.status(500).json(err));
 });
+// Request to query recipes database for a recipe
+router.get("/search/:name", (req, res) => {
+    Recipe.findAll({
+        where: { recipe_name: req.params.name },
+        attributes: [
+            "id",
+            "recipe_name",
+            "description",
+            "created_at",
+            "servings",
+            "prep_time",
+            "cook_time",
+            "cooking_instructions",
+            "is_spicy",
+            // "ingredient_id",
+            // "weekday",
+            "user_id"
+        ],
+    })
+        .then(dbRecipeData => {
+            if (!dbRecipeData) return res.status(404).json({ message: "No recipe found with this name" });
+
+            res.json(dbRecipeData);
+        })
+        .catch(err => res.status(500).json(err));
+});
 
 // GET single recipe ".../api/recipes/:id"
 router.get("/:id", (req, res) => {
@@ -95,32 +121,6 @@ router.get("/:id", (req, res) => {
         .catch(err => res.status(500).json(err));
 });
 
-// Request to query recipes database for a recipe
-router.get("/search/:name", (req, res) => {
-    Recipe.findAll({
-        where: { recipe_name: req.params.name },
-        attributes: [
-            "id",
-            "recipe_name",
-            "description",
-            "created_at",
-            "servings",
-            "prep_time",
-            "cook_time",
-            "cooking_instructions",
-            "is_spicy",
-            // "ingredient_id",
-            // "weekday",
-            "user_id"
-        ],
-    })
-        .then(dbRecipeData => {
-            if (!dbRecipeData) return res.status(404).json({ message: "No recipe found with this name" });
-
-            res.json(dbRecipeData);
-        })
-        .catch(err => res.status(500).json(err));
-});
 
 // POST create new recipe ".../api/recipes"
 router.post("/", (req, res) => {

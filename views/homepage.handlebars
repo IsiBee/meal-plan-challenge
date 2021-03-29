@@ -1,7 +1,24 @@
-<ul class="recipe-list">
-    {{#each recipes as |recipe|}}
-    <li>
-        {{> recipe-info recipe}}
-    </li>
-    {{/each}}
-</ul>
+{{#if loggedIn}}
+<div class="container">
+    <h2>Go to your dashboard to start planning</h2>
+</div>
+
+<hero class="jumbotron">
+    <div class="container">
+        <a class="btn btn-warning" href="./dashboard" role="button">Dashboard</a>
+
+    </div>
+</hero>
+{{/if}}
+
+{{#unless loggedIn}}
+<div class="container">
+    <h2>Login to start meal planning</h2>
+</div>
+
+<hero class="jumbotron bg-light">
+    <div class="container">
+        <a class="btn btn-warning" href="./login" role="button">Login</a>
+    </div>
+</hero>
+{{/unless}}
