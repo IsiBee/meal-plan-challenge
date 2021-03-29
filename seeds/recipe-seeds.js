@@ -11,14 +11,6 @@ const recipeData = [
         cook_time: "20 - 30 minutes",
         cooking_instructions: "follow box instructions",
         is_spicy: false,
-
-        // === check back on the following ======================= 
-
-        // ingredient_id: 1,
-        // weekday: "Wednesday", // can be NULL
-
-        // ^^^^^^^^^^^^^ Come back to this!
-
         user_id: 1
     },
     {
@@ -29,7 +21,6 @@ const recipeData = [
         cook_time: "3 hours",
         cooking_instructions: "gather all your bread, toast until golden, spread butter",
         is_spicy: false,
-
         user_id: 3
     },
     {
@@ -40,7 +31,6 @@ const recipeData = [
         cook_time: "1 minute",
         cooking_instructions: "spread mayo on bread, place bologna and cheese in between slices, enjoy!",
         is_spicy: false,
-        
         user_id: 2
     },
     {
@@ -51,7 +41,6 @@ const recipeData = [
         cook_time: "50 minutes",
         cooking_instructions: "salt and peper your chicken, throw it into the oven for 50 minuties at 400F, and enjoy!",
         is_spicy: false,
-        
         user_id: 1
     }
 ];

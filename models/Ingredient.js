@@ -20,6 +20,11 @@ Ingredient.init(
             allowNull: false,
         },
 
+        quantity: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+
         preparation: {
             type: DataTypes.STRING,
             allowNull: true,
