@@ -8,10 +8,16 @@ async function addRecipeHandler(event) {
     const prep_time = document.querySelector('#recipe_preptime').value.trim();
     const cook_time = document.querySelector('#recipe_cooktime').value.trim();
     const cooking_instructions = document.querySelector('textarea[name="cooking_instructions"').value.trim();
-    const is_spicy = document.querySelector('#recipe_isSpicy').value;
+    const is_spicy = document.querySelector('#recipe_isSpicy').checked;
 
 
-    console.log(is_spicy);
+    console.log(`${recipe_name}
+        description: ${description}
+        servings: ${servings}
+        prep time: ${prep_time}
+        cook time: ${cook_time}
+        cooking instructions: ${cooking_instructions}
+        is spicy: ${is_spicy}`);
 
 
     if (recipe_name && description && servings && prep_time && cook_time
