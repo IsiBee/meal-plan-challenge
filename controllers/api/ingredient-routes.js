@@ -62,6 +62,7 @@ router.post("/", (req, res) => {
     // }
     Ingredient.create({
         ingredient_name: req.body.ingredient_name,
+        quantity: req.body.quantity,
         preparation: req.body.preparation,
         recipe_id: req.body.recipe_id
     })
@@ -74,9 +75,11 @@ router.put("/:id", (req, res) => {
     Ingredient.update(
         {
             ingredient_name: req.body.ingredient_name,
+            quantity: req.body.quantity,
             preparation: req.body.preparation,
         },
         {
+            individualHooks: true,
             where: { id: req.params.id }
         }
     )

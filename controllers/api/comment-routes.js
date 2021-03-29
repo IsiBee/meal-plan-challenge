@@ -34,6 +34,9 @@ router.post("/", (req, res) => {
             comment_text: req.body.comment_text,
             recipe_id: req.body.recipe_id,
             user_id: req.session.user_id
+
+            // FOR INSOMNIA CORE TESTING
+            // user_id: req.body.user_id
         })
             .then(dbCommentData => res.json(dbCommentData))
             .catch(err => res.status(500).json(err));
