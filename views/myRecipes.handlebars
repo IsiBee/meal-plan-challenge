@@ -1,44 +1,3 @@
-{{#unless recipes.length}}
-<div class="subtitle">
-    You have no recipes.
-</div>
-{{/unless}}
-
-<section>
-    <h2>Create New Recipe</h2>
-
-    <form class="new-recipe-form">
-        <div>
-            <label for="recipe_name">Name</label>
-            <input type="text" id="recipe_name" name="recipe_name" />
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <input type="text" id="recipe_description" name="description" />
-        </div>
-        <div>
-            <label for="servings"># of Servings</label>
-            <input type="number" id="recipe_servings" name="servings" />
-        </div>
-        <div>
-            <label for="prep_time">Prep Time</label>
-            <input type="number" id="recipe_preptime" name="prep_time" />
-        </div>
-        <div>
-            <label for="cook_time">Cook Time</label>
-            <input type="number" id="recipe_cooktime" name="cook_time" />
-        </div>
-        <div>
-            <label for="cooking_instructions">Cooking Instructions</label>
-            <textarea name="cooking_instructions"></textarea>
-        </div>
-        <div>
-            <label for="isSpicy">Spicy?</label>
-            <input type="checkbox" id="recipe_isSpicy" name="isSpicy" />
-        </div>
-        <button type="submit" class="btn btn-warning">Create</button>
-    </form>
-</section>
 <ul class="list-group">
     {{#each recipes as |recipe|}}
     <li>
@@ -46,5 +5,3 @@
     </li>
     {{/each}}
 </ul>
-
-<script src="/js/add-recipe.js"></script>

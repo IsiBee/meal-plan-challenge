@@ -1,28 +1,30 @@
 <link rel="stylesheet" href="/css/container.css">
 
 
-<div>
-    <div class="draggable" data-value={{recipe_name}} draggable="true">
+<article class="draggable card p-0" data-value={{recipe_name}} draggable="true">
 
-        <p class="title">
-            {{recipe_name}}
-        </p>
+    <p class="card-header recipe-title">
+        {{recipe_name}}
+        {{#if is_spicy}}
+        <span> 🌶️</span>
+        {{/if}}
+    </p>
+    <div class="card-body recipe-card pb-0">
         <p class="subtitle">
             {{description}}
         </p>
         <p>
-            {{prep_time}}
+            Prep Time: {{prep_time}} min
         </p>
-        {{#if is_spicy}}
         <p>
-            Spicy!
+            Cook Time: {{cook_time}} min
         </p>
-        {{/if}}
-
-        <a href="/recipe/{{id}}">see full recipe</a>
+        <p>
+            Serves {{servings}}
+        </p>
     </div>
-
-</div>
+    <a class="text-info card-footer recipe-footer" href="/recipe/{{id}}">see full recipe</a>
+</article>
 
 
 

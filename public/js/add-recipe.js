@@ -39,7 +39,7 @@ async function addRecipeHandler(event) {
 
         // check the response status
         if (response.ok) {
-            document.location.reload('dashboard/myRecipes');
+            document.location.replace('/dashboard/myRecipes');
         }
 
     } else {
