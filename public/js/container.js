@@ -5,7 +5,7 @@
 document.querySelectorAll(".draggable").forEach(draggable => {
     draggable.addEventListener("dragstart", () => {
         draggable.classList.add("dragging");
-        
+
     });
 
     draggable.addEventListener("dragend", () => {
@@ -13,21 +13,21 @@ document.querySelectorAll(".draggable").forEach(draggable => {
     });
 });
 
-document.querySelectorAll(".container").forEach(container => {
+document.querySelectorAll(".day-container").forEach(container => {
     container.addEventListener("dragover", event => {
         event.preventDefault();
 
         const afterElement = getDragAfterElement(container, event.clientY);
 
         const draggable = document.querySelector(".dragging");
-      
+
 
         if (afterElement == null) {
             container.appendChild(draggable);
-          
+
         } else {
             container.insertBefore(draggable, afterElement);
-           
+
         }
     });
 });
