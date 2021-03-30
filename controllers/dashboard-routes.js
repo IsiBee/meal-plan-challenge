@@ -17,8 +17,6 @@ router.get("/", withAuth, (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            // "ingredient_id",
-            // "weekday",
             "user_id"
         ]
     })
@@ -49,8 +47,6 @@ router.get("/myRecipes", withAuth, (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            // "ingredient_id",
-            // "weekday",
             "user_id"
         ],
         order: [["created_at", "DESC"]],
@@ -92,8 +88,6 @@ router.get("/search/:name", (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            // "ingredient_id",
-            // "weekday",
             "user_id"
         ]
     })
