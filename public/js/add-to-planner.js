@@ -4,4 +4,4 @@ async function addToPlannerHandler(event) {
     console.log("adding to planner!")
 };
 
-document.querySelector('#add-to-planner').addEventListener('click', addToPlannerHandler);
+document.getElementById('add-to-planner').addEventListener('click', addToPlannerHandler);
