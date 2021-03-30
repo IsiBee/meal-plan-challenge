@@ -2,6 +2,9 @@ const router = require('express').Router();
 const { Recipe, User, Comment, Ingredient, MealPlan } = require('../../models');
 
 const chalk = require('chalk');
+const Sequelize = require('sequelize');
+
+const Op = Sequelize.Op;
 const log = console.log;
 
 // GET all recipes ".../api/recipes"
@@ -58,7 +61,9 @@ router.get("/", (req, res) => {
 // Request to query recipes database for a recipe
 router.get("/search/:name", (req, res) => {
     Recipe.findAll({
-        where: { recipe_name: req.params.name },
+        where: {
+            recipe_name: { [Op.like]: `%${req.params.name}%` }
+        },
         attributes: [
             "id",
             "recipe_name",
@@ -241,7 +246,7 @@ router.put('/:id', (req, res) => {
 
             if (!dbRecipeData) {
                 res.status(404).json({ message: "No recipe found with this id" });
-                return 
+                return
             }
 
             res.json(dbRecipeData);
