@@ -17,14 +17,6 @@ router.get("/:id", (req, res) => {
         where: { id: req.params.id },
         include: [
             {
-                model: MealPlan,
-                attributes: [
-                    "id",
-                    "recipe_id",
-                    "user_id"
-                ]
-            },
-            {
                 model: Recipe,
                 attributes: [
                     "id",
@@ -51,6 +43,12 @@ router.get("/:id", (req, res) => {
                     model: Recipe,
                     attributes: ["recipe_name"]
                 }
+            },
+            {
+                model: Recipe,
+                attributes: ["recipe_name"],
+                through: MealPlan,
+                as: "saved_recipes"
             }
         ]
     })
