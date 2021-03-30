@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-0">
         <ul class="navbar-nav mr-auto">
             <li>
                 <a class="nav-link" href="/">Home</a>
@@ -23,7 +23,10 @@
                 <a class="nav-link" href="/dashboard">My Dashboard</a>
             </li>
             <li>
-                <a class="nav-link" href="/dashboard/myRecipes">Add Recipe</a>
+                <a class="nav-link" href="/dashboard/addRecipes">Add Recipe</a>
+            </li>
+            <li>
+                <a class="nav-link" href="/dashboard/myRecipes">My Recipes</a>
             </li>
             {{#if loggedIn}}
             <li>
