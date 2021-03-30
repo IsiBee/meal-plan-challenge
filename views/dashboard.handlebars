@@ -4,7 +4,9 @@
     Try searching for one</p>
 <div class="row">
     <div class="col-5">
-        <button class="saveCal btn btn-warning" data-user={{user_id}}>Save your meal plan</button>
+        <button class="saveCal btn-small btn btn-warning" data-user={{user_id}}>
+            <span class="p-0"><i class="fas fa-cart-arrow-down p-0"></i></span>
+            Save meal plan</button>
         <div class="day-container cal" id="Sunday">
             Sunday
         </div>
@@ -30,9 +32,14 @@
     <div class="col-7">
         <form class="search-recipe-form form-inline">
             <input type="text" id="pickedRecipe" placeholder="Search Recipes" />
-            <button type="submit" class="btn btn-success ">Search</button>
+
+            <button type="submit" class="btn btn-small btn-success">
+                <span class="p-0"><i class="fas fa-search p-0"></i></span>
+                Search</button>
         </form>
-        <a href=" dashboard/myRecipes" class="btn btn-warning mb-2">Add New Recipe</a>
+        <a href=" dashboard/myRecipes" class="btn-small btn btn-warning mb-3 mx-2">
+            <span class="p-0"><i class="fas fa-plus p-0"></i></span>
+            Add New Recipe</a>
         <ul class="list-group">
             {{#each recipes as |recipe|}}
             <li>
