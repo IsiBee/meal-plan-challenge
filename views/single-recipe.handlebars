@@ -1,4 +1,23 @@
-{{> recipe-info recipe}}
+
+<div>
+    <h2>{{recipe.recipe_name}}
+        {{#if recipe.is_spicy}}
+        <span> 🌶️</span>
+        {{/if}}
+    </h2>
+
+    <span> {{recipe.servings}} {{format_plural "serving" recipe.servings}}</span>
+</div>
+
+<p>{{recipe.description}}</p>
+
+<div>Prep Time: {{recipe.prep_time}}</div>
+<div>Cook Time: {{recipe.cook_time}}</div>
+
+{{> ingredients recipe.ingredients}}
+
+<h3>Instructions:</h3>
+<p>{{recipe.cooking_instructions}}</p>
 
 {{#if loggedIn}}
 <form class="comment-form">
@@ -7,8 +26,8 @@
     </div>
 
     <div>
-        <button type="submit">add comment</button>
-        {{!-- <button type="button" class="planner-btn">add to meal plan</button> --}}
+        <button type="submit" class="btn btn-warning mb-2">add comment</button>
+        <button type="button" id="save-to-favorites" class="btn btn-warning mb-2">save to favorites</button>
     </div>
 </form>
 {{/if}}
@@ -16,5 +35,6 @@
 {{> comments recipe.comments}}
 
 {{#if loggedIn}}
-<script src="/javascript/comment.js"></script>
+<script src="/js/save-recipe.js"></script>
+<script src="/js/comment.js"></script>
 {{/if}}

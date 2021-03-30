@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipe, User, Comment, Ingredient } = require('../../models');
+const { Recipe, User, Comment, Ingredient, MealPlan } = require('../../models');
 
 const chalk = require('chalk');
 const log = console.log;
@@ -26,6 +26,7 @@ router.get("/", (req, res) => {
                 attributes: [
                     "id",
                     "ingredient_name",
+                    "quantity",
                     "preparation",
                     "recipe_id"
                 ]
@@ -76,6 +77,7 @@ router.get("/search/:name", (req, res) => {
                 attributes: [
                     "id",
                     "ingredient_name",
+                    "quantity",
                     "preparation",
                     "recipe_id"
                 ]
@@ -130,6 +132,7 @@ router.get("/:id", (req, res) => {
                 attributes: [
                     "id",
                     "ingredient_name",
+                    "quantity",
                     "preparation",
                     "recipe_id"
                 ]
@@ -195,9 +198,22 @@ router.post("/", (req, res) => {
         .then(dbRecipeData => res.json(dbRecipeData))
         .catch(err => res.status(500).json(err));
 });
-// ^^^ REQUIRES ATTENTION ^^^^^^
 
-// UPVOTE route
+
+// MEAL PLAN route
+router.put("/saverecipe", (req, res) => {
+    if (req.session) {
+        Recipe.saveRecipe(
+            {
+                ...req.body,
+                user_id: req.session.user_id
+            },
+            { MealPlan, Ingredient, User, Comment }
+        )
+            .then(updatedRecipeData => res.json(updatedRecipeData))
+            .catch(err => res.status(500).json(err));
+    }
+});
 
 // PUT update recipe ".../api/recipes/:id"
 router.put('/:id', (req, res) => {

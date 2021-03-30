@@ -85,8 +85,24 @@ router.get("/recipe/:id", (req, res) => {
         ],
         include: [
             {
+                model: Ingredient,
+                attributes: [
+                    "id",
+                    "ingredient_name",
+                    "quantity",
+                    "preparation",
+                    "recipe_id"
+                ]
+            },
+            {
                 model: Comment,
-                attributes: ["id", "comment_text", "recipe_id", "user_id", "created_at"],
+                attributes: [
+                    "id",
+                    "comment_text",
+                    "recipe_id",
+                    "user_id",
+                    "created_at"
+                ],
                 include: {
                     model: User,
                     attributes: ["username"]

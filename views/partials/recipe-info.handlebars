@@ -19,10 +19,7 @@
         </p>
         {{/if}}
 
-        {{#if loggedIn}}
-        <button id="add-to-planner" class="btn btn-success">add to planner</button>
-        {{/if}}
-
+        <a href="/recipe/{{id}}">see full recipe</a>
     </div>
 
 </div>
@@ -30,7 +27,6 @@
 
 
 
-{{#if loggedIn}}
-<script src="/js/planner.js"></script>
+{{!-- {{#if loggedIn}} --}}
 <script src="/js/container.js"></script>
-{{/if}}
+{{!-- {{/if}} --}}
