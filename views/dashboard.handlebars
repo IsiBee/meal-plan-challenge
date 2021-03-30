@@ -1,42 +1,38 @@
 <h2>Your Planned Meals</h2>
-<p>Drag your recipe into whatever day of the week. Enjoy!</p>
+<p>Drag a recipe into a day of the week.
+    Want to try a new recipe?
+    Try searching for one</p>
 <div class="row">
-            <button class="saveCal" data-user={{user_id}}>Save this to your Calender</button>
     <div class="col-5">
-        <div class="container cal" id="Sunday">
+        <button class="saveCal btn btn-warning" data-user={{user_id}}>Save your meal plan</button>
+        <div class="day-container cal" id="Sunday">
             Sunday
         </div>
-        <div class="container cal" id="Monday">
+        <div class="day-container cal" id="Monday">
             Monday
         </div>
-        <div class="container cal" id="Tuesday">
+        <div class="day-container cal" id="Tuesday">
             Tuesday
         </div>
-        <div class="container cal" id="Wednesday">
+        <div class="day-container cal" id="Wednesday">
             Wednesday
         </div>
-        <div class="container cal" id="Thursday">
+        <div class="day-container cal" id="Thursday">
             Thursday
         </div>
-        <div class="container cal" id="Friday">
+        <div class="day-container cal" id="Friday">
             Friday
         </div>
-        <div class="container cal" id="Saturday">
+        <div class="day-container cal" id="Saturday">
             Saturday
         </div>
     </div>
     <div class="col-7">
-        <a href="dashboard/myRecipes" class="btn btn-warning mb-2 col-6">Add New Recipe</a>
-        <form class="search-recipe-form">
-            <div class="row">
-                <div class="col-5">
-                    <input type="text" class="form-control mb-1" id="pickedRecipe" placeholder="Search Recipes" />
-                </div>
-                <div class="col-2">
-                    <button type="submit" class="btn btn-success">Search</button>
-                </div>
-            </div>
+        <form class="search-recipe-form form-inline">
+            <input type="text" id="pickedRecipe" placeholder="Search Recipes" />
+            <button type="submit" class="btn btn-success ">Search</button>
         </form>
+        <a href=" dashboard/myRecipes" class="btn btn-warning mb-2">Add New Recipe</a>
         <ul class="list-group">
             {{#each recipes as |recipe|}}
             <li>
@@ -48,7 +44,7 @@
 </div>
 
 
-<link rel="stylesheet" href="/css/container.css">
+<link rel="stylesheet" href="/css/style.css">
 
 <script src="/js/container.js"></script>
 <script src="/js/search-recipe.js"></script>

@@ -1,25 +1,18 @@
 {{#if loggedIn}}
-<div class="container">
+<div class="main-container">
     <h2>Go to your dashboard to start planning</h2>
+    <a class="btn btn-warning" href="./dashboard" role="button">Dashboard</a>
 </div>
-
-<hero class="jumbotron">
-    <div class="container">
-        <a class="btn btn-warning" href="./dashboard" role="button">Dashboard</a>
-
-    </div>
-</hero>
 {{/if}}
 
 {{#unless loggedIn}}
-<div class="container">
-    <h2>Login to start meal planning</h2>
+<div class="main-container">
+    <h2 class="pb-3">Start your week with a MEAL plan</h2>
+    <p>Do you want to eat healthier?</p>
+    <p>Do you have trouble coming up with dinner ideas after a long day at work?</p>
+    <p>Plan your meals out for the whole week.</p>
+    <a class="btn btn-warning" href="./login" role="button">Login</a>
 </div>
 
-<hero class="jumbotron bg-light">
-    <div class="container">
-        <a class="btn btn-warning" href="./login" role="button">Login</a>
-    </div>
-</hero>
 
 {{/unless}}
