@@ -20,7 +20,7 @@ Schedule.init(
         },
 
         sunday: {
-            type: DataTypes.ARRAY
+            type: DataTypes.ARRAY(recipe_id)
         },
 
         monday: {
