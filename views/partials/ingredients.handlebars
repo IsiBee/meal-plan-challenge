@@ -1,0 +1,18 @@
+<ul class="ingredients">
+    <h3>Ingredients:</h3>
+    {{#each this}}
+    <li class="ingredient">
+        <div class="meta">
+            {{#if quantity}}
+            <span>{{quantity}} </span>
+            {{/if}}
+
+            {{ingredient_name}}
+        
+            {{#if preparation}}
+            <span> - {{preparation}}</span>
+            {{/if}}                
+        </div>
+    </li>
+    {{/each}}
+</ul>

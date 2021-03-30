@@ -26,6 +26,7 @@ router.get("/", (req, res) => {
                 attributes: [
                     "id",
                     "ingredient_name",
+                    "quantity",
                     "preparation",
                     "recipe_id"
                 ]
@@ -76,6 +77,7 @@ router.get("/search/:name", (req, res) => {
                 attributes: [
                     "id",
                     "ingredient_name",
+                    "quantity",
                     "preparation",
                     "recipe_id"
                 ]
@@ -130,6 +132,7 @@ router.get("/:id", (req, res) => {
                 attributes: [
                     "id",
                     "ingredient_name",
+                    "quantity",
                     "preparation",
                     "recipe_id"
                 ]
