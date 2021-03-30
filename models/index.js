@@ -3,6 +3,7 @@ const Favorite = require("./Favorite");
 const Ingredient = require("./Ingredient");
 const Comment = require("./Comment");
 const Recipe = require("./Recipe");
+const Schedule = require("./Schedule");
 
 // ==== User/Recipe ===========
 User.hasMany(Recipe, {
@@ -28,7 +29,39 @@ Recipe.belongsToMany(User, {
     onDelete: "SET NULL"
 });
 
-// ==== User/Favorit ===========
+User.hasMany(Recipe, {
+    through: Schedule,
+    as: "scheduled_recipes",
+    foreignKey: "user_id",
+    onDelete: "SET NULL"
+});
+
+Recipe.hasMany(User, {
+    through: Schedule,
+    as: "scheduled_recipes",
+    foreignKey: "user_id",
+    onDelete: "SET NULL"
+});
+
+// ==== User/Schedule ========
+User.hasOne(Schedule, {
+    foreignKey: "user_id"
+});
+
+Schedule.belongsTo(User, {
+    foreignKey: "user_id"
+});
+
+// ==== Recipe/Schedule ========
+Recipe.belongsToMany(Schedule, {
+    foreignKey: "recipe_id"
+});
+
+Schedule.hasMany(Recipe, {
+    foreignKey: "recipe_id"
+});
+
+// ==== User/Favorite ===========
 User.hasMany(Favorite, {
     foreignKey: "user_id"
 });
