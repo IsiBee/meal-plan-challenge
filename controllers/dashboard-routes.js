@@ -17,8 +17,6 @@ router.get("/", withAuth, (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            // "ingredient_id",
-            // "weekday",
             "user_id"
         ]
     })
@@ -28,8 +26,49 @@ router.get("/", withAuth, (req, res) => {
             res.render("dashboard", {
                 recipes,
                 loggedIn: req.session.loggedIn,
-                user_id:req.session.user_id
+                user_id: req.session.user_id
             });
+        })
+        .catch(err => res.status(500).json(err));
+});
+
+router.get("/addRecipes", withAuth, (req, res) => {
+    Recipe.findAll({
+        where: {
+            user_id: req.session.user_id
+        },
+        attributes: [
+            "id",
+            "recipe_name",
+            "description",
+            "created_at",
+            "servings",
+            "prep_time",
+            "cook_time",
+            "cooking_instructions",
+            "is_spicy",
+            "user_id"
+        ],
+        order: [["created_at", "DESC"]],
+        include: [
+            {
+                model: Comment,
+                attributes: ["id", "comment_text", "recipe_id", "user_id", "created_at"],
+                include: {
+                    model: User,
+                    attributes: ["username"]
+                }
+            },
+            {
+                model: User,
+                attributes: ["username"]
+            }
+        ]
+    })
+        .then(dbRecipeData => {
+            const recipes = dbRecipeData.map(recipe => recipe.get({ plain: true }));
+
+            res.render("addRecipes", { recipes, loggedIn: req.session.loggedIn });
         })
         .catch(err => res.status(500).json(err));
 });
@@ -49,8 +88,6 @@ router.get("/myRecipes", withAuth, (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            // "ingredient_id",
-            // "weekday",
             "user_id"
         ],
         order: [["created_at", "DESC"]],
@@ -73,37 +110,6 @@ router.get("/myRecipes", withAuth, (req, res) => {
             const recipes = dbRecipeData.map(recipe => recipe.get({ plain: true }));
 
             res.render("myRecipes", { recipes, loggedIn: req.session.loggedIn });
-        })
-        .catch(err => res.status(500).json(err));
-});
-
-router.get("/search/:name", (req, res) => {
-    Recipe.findAll({
-        where: {
-            recipe_name: req.params.name
-        },
-        attributes: [
-            "id",
-            "recipe_name",
-            "description",
-            "created_at",
-            "servings",
-            "prep_time",
-            "cook_time",
-            "cooking_instructions",
-            "is_spicy",
-            // "ingredient_id",
-            // "weekday",
-            "user_id"
-        ]
-    })
-        .then(dbRecipeData => {
-            const recipes = dbRecipeData.map(recipe => recipe.get({ plain: true }));
-
-            res.render("dashboard", {
-                recipes,
-                loggedIn: req.session.loggedIn
-            });
         })
         .catch(err => res.status(500).json(err));
 });

@@ -1,7 +1,10 @@
 const router = require('express').Router();
-const { Recipe, User, Comment } = require('../../models');
+const { Recipe, User, Comment, Ingredient, MealPlan } = require('../../models');
 
 const chalk = require('chalk');
+const Sequelize = require('sequelize');
+
+const Op = Sequelize.Op;
 const log = console.log;
 
 // GET all recipes ".../api/recipes"
@@ -17,12 +20,20 @@ router.get("/", (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            // "ingredient_id",
-            // "weekday",
             "user_id"
         ],
         order: [["created_at", "DESC"]],
         include: [
+            {
+                model: Ingredient,
+                attributes: [
+                    "id",
+                    "ingredient_name",
+                    "quantity",
+                    "preparation",
+                    "recipe_id"
+                ]
+            },
             {
                 model: Comment,
                 attributes: [
@@ -46,10 +57,13 @@ router.get("/", (req, res) => {
         .then(dbRecipeData => res.json(dbRecipeData))
         .catch(err => res.status(500).json(err));
 });
+
 // Request to query recipes database for a recipe
 router.get("/search/:name", (req, res) => {
     Recipe.findAll({
-        where: { recipe_name: req.params.name },
+        where: {
+            recipe_name: { [Op.like]: `%${req.params.name}%` }
+        },
         attributes: [
             "id",
             "recipe_name",
@@ -60,10 +74,38 @@ router.get("/search/:name", (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            // "ingredient_id",
-            // "weekday",
             "user_id"
         ],
+        include: [
+            {
+                model: Ingredient,
+                attributes: [
+                    "id",
+                    "ingredient_name",
+                    "quantity",
+                    "preparation",
+                    "recipe_id"
+                ]
+            },
+            {
+                model: Comment,
+                attributes: [
+                    "id",
+                    "comment_text",
+                    "recipe_id",
+                    "user_id",
+                    "created_at"
+                ],
+                include: {
+                    model: User,
+                    attributes: ["username"]
+                }
+            },
+            {
+                model: User,
+                attributes: ["username"]
+            }
+        ]
     })
         .then(dbRecipeData => {
             if (!dbRecipeData) return res.status(404).json({ message: "No recipe found with this name" });
@@ -87,11 +129,19 @@ router.get("/:id", (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            // "ingredient_id",
-            // "weekday",
             "user_id"
         ],
         include: [
+            {
+                model: Ingredient,
+                attributes: [
+                    "id",
+                    "ingredient_name",
+                    "quantity",
+                    "preparation",
+                    "recipe_id"
+                ]
+            },
             {
                 model: Comment,
                 attributes: [
@@ -132,14 +182,6 @@ router.post("/", (req, res) => {
     //     cook_time: "20 - 30 minutes",
     //     cooking_instructions: "follow box instructions",
     //     is_spicy: false,
-
-    //     // === check back on the following ======================= 
-
-    //     ingredient_id: 1,
-    //     weekday: "Wednesday", // can be NULL
-
-    //     // ^^^^^^^^^^^^^ Come back to this!
-
     //     user_id: 1
     // }
 
@@ -152,10 +194,6 @@ router.post("/", (req, res) => {
         cooking_instructions: req.body.cooking_instructions,
         is_spicy: req.body.is_spicy,
 
-        // check back on these
-        // ingredient_id: req.body.ingredient_id,
-        // weekday: req.body.weekday,
-
         // get user_id from session
         user_id: req.session.user_id
 
@@ -165,9 +203,22 @@ router.post("/", (req, res) => {
         .then(dbRecipeData => res.json(dbRecipeData))
         .catch(err => res.status(500).json(err));
 });
-// ^^^ REQUIRES ATTENTION ^^^^^^
 
-// UPVOTE route
+
+// MEAL PLAN route
+router.put("/saverecipe", (req, res) => {
+    if (req.session) {
+        Recipe.saveRecipe(
+            {
+                ...req.body,
+                user_id: req.session.user_id
+            },
+            { MealPlan, Ingredient, User, Comment }
+        )
+            .then(updatedRecipeData => res.json(updatedRecipeData))
+            .catch(err => res.status(500).json(err));
+    }
+});
 
 // PUT update recipe ".../api/recipes/:id"
 router.put('/:id', (req, res) => {
@@ -180,11 +231,6 @@ router.put('/:id', (req, res) => {
             cook_time: req.body.cook_time,
             cooking_instructions: req.body.cooking_instructions,
             is_spicy: req.body.is_spicy,
-
-            // check back on these
-            // ingredient_id: req.body.ingredient_id,
-            // weekday: req.body.weekday,
-
             user_id: req.session.user_id
 
             // FOR INSOMNIA CORE TESTING
@@ -200,7 +246,7 @@ router.put('/:id', (req, res) => {
 
             if (!dbRecipeData) {
                 res.status(404).json({ message: "No recipe found with this id" });
-                return 
+                return
             }
 
             res.json(dbRecipeData);

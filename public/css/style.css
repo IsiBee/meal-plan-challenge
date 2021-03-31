@@ -1,5 +1,115 @@
+:root {
+    --primary-color: #272727;
+    --secondary-color: #ffffff;
+    --light-color: #ebd798;
+}
+
 *{
+    padding-left: 10px;
+}
+
+p {
+    font-size: 20px;
+}
+
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
+
+.main-container {
+    border-radius: 25px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    margin: 10px;
+    margin-top: 50px;
+    text-align: center;
+    padding: 20px;
+    padding-bottom: 30px;
+}
+
+.day-container {
+    /* background-color: lightgrey; */
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 15px;
+}
+
+.form-container {
+    border-radius: 25px;
+    color: var(--primary-color);
+    margin: 10px;
+    text-align: left;
+    padding: 20px;
+    padding-bottom: 30px; 
+}
+
+ .btn-big {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.btn-small {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px; 
+}
+
+.draggable {
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid lightgrey;
+    cursor: move;
+    color: black;
+    width:33%;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.draggable.dragging {
+    opacity: 0.5;
+}
+
+#pickedRecipe{
+    border: 1px solid var(--light-color);
+    padding: 10px 20px;
+    font-size: 16px;
+    color: var(--primary-color);
+    width: 40%;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+article, .card {
+    border-radius: 5px;
+}
+.recipe-title {
+    font-size: 14px;
+    background-color: #fff;
+}
+.recipe-card p{
+    font-size: 12px;
+    padding: 0px;
+}
+
+.recipe-footer{
+    font-size: 12px;
+}
+
+.cal{
+    font-weight: bold;
+    background-color: var(--light-color);
+}
+
+footer {
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+  font-size: 110%;
+}
+

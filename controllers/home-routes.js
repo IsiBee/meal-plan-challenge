@@ -16,8 +16,6 @@ router.get("/", (req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            // "ingredient_id",
-            // "weekday",
             "user_id"
         ],
         order: [["created_at", "DESC"]],
@@ -68,7 +66,7 @@ router.get("/sign-up", (req, res) => {
 });
 
 // render single-recipe page "/recipe/:id"
-router.get("/recipe/:id", /*withAuth,*/(req, res) => {
+router.get("/recipe/:id", (req, res) => {
     Recipe.findOne({
         where: {
             id: req.params.id
@@ -83,14 +81,28 @@ router.get("/recipe/:id", /*withAuth,*/(req, res) => {
             "cook_time",
             "cooking_instructions",
             "is_spicy",
-            // "ingredient_id",
-            // "weekday",
             "user_id"
         ],
         include: [
             {
+                model: Ingredient,
+                attributes: [
+                    "id",
+                    "ingredient_name",
+                    "quantity",
+                    "preparation",
+                    "recipe_id"
+                ]
+            },
+            {
                 model: Comment,
-                attributes: ["id", "comment_text", "recipe_id", "user_id", "created_at"],
+                attributes: [
+                    "id",
+                    "comment_text",
+                    "recipe_id",
+                    "user_id",
+                    "created_at"
+                ],
                 include: {
                     model: User,
                     attributes: ["username"]

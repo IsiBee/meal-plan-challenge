@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Recipe, Comment } = require('../../models');
+const { User, MealPlan, Recipe, Comment } = require('../../models');
 
 // GET all users ".../api/users"
 router.get("/", (req, res) => {
@@ -27,8 +27,6 @@ router.get("/:id", (req, res) => {
                     "cook_time",
                     "cooking_instructions",
                     "is_spicy",
-                    // "ingredient_id",
-                    // "weekday",
                     "user_id"
                 ]
             },
@@ -45,6 +43,12 @@ router.get("/:id", (req, res) => {
                     model: Recipe,
                     attributes: ["recipe_name"]
                 }
+            },
+            {
+                model: Recipe,
+                attributes: ["recipe_name"],
+                through: MealPlan,
+                as: "saved_recipes"
             }
         ]
     })
