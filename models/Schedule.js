@@ -20,34 +20,54 @@ Schedule.init(
         },
 
         sunday: {
-            type: DataTypes.ARRAY(recipe_id)
+            type: DataTypes.INTEGER,
+            references: {
+                model: "recipe",
+                key: "id"
+            }
         },
 
         monday: {
-            type: DataTypes.ARRAY
+            type: DataTypes.INTEGER,
+            references: {
+                model: "recipe",
+                key: "id"
+            }
         },
 
         tuesday: {
-            type: DataTypes.ARRAY
+            type: DataTypes.INTEGER,
+            references: {
+                model: "recipe",
+                key: "id"
+            }
         },
 
         wednesday: {
-            type: DataTypes.ARRAY
+            type: DataTypes.INTEGER,
+            references: {
+                model: "recipe",
+                key: "id"
+            }
         },
 
         thursday: {
-            type: DataTypes.ARRAY
+            type: DataTypes.INTEGER,
+            references: {
+                model: "recipe",
+                key: "id"
+            }
         },
 
         friday: {
-            type: DataTypes.ARRAY
+            type: DataTypes.INTEGER,
+            references: {
+                model: "recipe",
+                key: "id"
+            }
         },
 
         saturday: {
-            type: DataTypes.ARRAY
-        },
-
-        recipe_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: "recipe",

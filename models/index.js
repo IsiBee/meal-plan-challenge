@@ -3,7 +3,7 @@ const Favorite = require("./Favorite");
 const Ingredient = require("./Ingredient");
 const Comment = require("./Comment");
 const Recipe = require("./Recipe");
-// const Schedule = require("./Schedule");
+const Schedule = require("./Schedule");
 
 // ==== User/Recipe ===========
 User.hasMany(Recipe, {
@@ -44,9 +44,9 @@ Recipe.belongsToMany(User, {
 // });
 
 // ==== User/Schedule ========
-// User.hasOne(Schedule, {
-//     foreignKey: "user_id"
-// });
+User.hasOne(Schedule, {
+    foreignKey: "user_id"
+});
 
 // Schedule.belongsTo(User, {
 //     foreignKey: "user_id"
@@ -109,4 +109,4 @@ Comment.belongsTo(Recipe, {
 });
 
 
-module.exports = { User, Favorite, Ingredient, Comment, Recipe /*, Schedule*/ };
+module.exports = { User, Favorite, Ingredient, Comment, Recipe, Schedule };
