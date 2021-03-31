@@ -40,6 +40,10 @@ body {
     font-weight: 700;
 }
 
+main {
+    padding-bottom: 3rem;
+}
+
 .main-container {
     border-radius: 25px;
     background-color: var(--secondary-color);
