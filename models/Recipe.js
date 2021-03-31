@@ -6,7 +6,7 @@ const sequelize = require('../config/connection.js');
 
 class Recipe extends Model {
     static saveRecipe(body, models) {
-        return models.MealPlan.create({
+        return models.Favorite.create({
             user_id: body.user_id,
             recipe_id: body.recipe_id
         })

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Recipe, User, Comment, Ingredient } = require("../models");
+const { Recipe, User, Comment, Ingredient, Favorite } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", withAuth, (req, res) => {
@@ -103,6 +103,10 @@ router.get("/myRecipes", withAuth, (req, res) => {
             {
                 model: User,
                 attributes: ["username"]
+            },
+            {
+                model: Favorite,
+                attributes: ["recipe_id"]
             }
         ]
     })

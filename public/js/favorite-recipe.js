@@ -1,6 +1,8 @@
 async function addToFavoritesHandler(event) {
     event.preventDefault();
 
+    console.log('==============================================================');
+    
     const id = window.location.toString().split("/")[
         window.location.toString().split("/").length - 1
     ];
@@ -18,7 +20,6 @@ async function addToFavoritesHandler(event) {
     } else {
         alert(response.statusText)
     }
-    console.log(id);
 };
 
 document.getElementById('save-to-favorites').addEventListener('click', addToFavoritesHandler);
