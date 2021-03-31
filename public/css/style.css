@@ -15,6 +15,12 @@ p {
 body {
     margin: 0;
     padding: 0;
+    position: relative;
+    min-height: 100vh;
+}
+
+main {
+    padding-bottom: 3rem;
 }
 
 .main-container {
@@ -106,10 +112,14 @@ article, .card {
 }
 
 footer {
-  border-top: 1px solid #ccc;
-  display: flex;
-  justify-content: center;
-  padding: 1%;
-  font-size: 110%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+    font-size: 110%;
 }
 
