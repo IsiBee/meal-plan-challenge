@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection.js');
 
-class Schedule extends Model {}
+class Schedule extends Model { }
 
 Schedule.init(
     {
@@ -20,7 +20,11 @@ Schedule.init(
         },
 
         sunday: {
-            type: DataTypes.ARRAY(recipe_id)
+            type: DataTypes.ARRAY(DataTypes.INTEGER),
+            references: {
+                model: 'recipe',
+                key: 'id'
+            }
         },
 
         monday: {
