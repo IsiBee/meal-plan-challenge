@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="/css/container.css">
 
 
-<article class="draggable card p-0 row mx-2" data-value={{recipe_name}} draggable="true" id={{id}}>
+<article class="draggable card p-0 row mx-2" data-value={{recipe_name}} draggable="true" id={{id}}
+    ondragstart="onDragStart(event);">
 
     <p class="card-header recipe-title">
         {{recipe_name}}
@@ -27,8 +28,4 @@
 </article>
 
 
-
-
-{{!-- {{#if loggedIn}} --}}
-<script src="/js/container.js"></script>
-{{!-- {{/if}} --}}
+<script src="/js/drag-drop.js"></script>
