@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipe, User, Comment, Ingredient, MealPlan } = require('../../models');
+const { Recipe, User, Comment, Ingredient, Favorite } = require('../../models');
 
 const chalk = require('chalk');
 const Sequelize = require('sequelize');
@@ -205,7 +205,7 @@ router.post("/", (req, res) => {
 });
 
 
-// MEAL PLAN route
+// FAVORITE route
 router.put("/saverecipe", (req, res) => {
     if (req.session) {
         Recipe.saveRecipe(
@@ -213,7 +213,7 @@ router.put("/saverecipe", (req, res) => {
                 ...req.body,
                 user_id: req.session.user_id
             },
-            { MealPlan, Ingredient, User, Comment }
+            { Favorite, Ingredient, User, Comment }
         )
             .then(updatedRecipeData => res.json(updatedRecipeData))
             .catch(err => res.status(500).json(err));

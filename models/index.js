@@ -1,8 +1,9 @@
 const User = require("./User");
-const MealPlan = require("./Meal-Plan");
+const Favorite = require("./Favorite");
 const Ingredient = require("./Ingredient");
 const Comment = require("./Comment");
 const Recipe = require("./Recipe");
+// const Schedule = require("./Schedule");
 
 // ==== User/Recipe ===========
 User.hasMany(Recipe, {
@@ -15,36 +16,68 @@ Recipe.belongsTo(User, {
 });
 
 User.belongsToMany(Recipe, {
-    through: MealPlan,
-    as: "saved_recipes",
+    through: Favorite,
+    as: "favorited_recipes",
     foreignKey: "user_id",
     onDelete: "SET NULL"
 });
 
 Recipe.belongsToMany(User, {
-    through: MealPlan,
-    as: "saved_recipes",
+    through: Favorite,
+    as: "favorited_recipes",
     foreignKey: "user_id",
     onDelete: "SET NULL"
 });
 
-// ==== User/MealPlan ===========
-User.hasMany(MealPlan, {
+// User.hasMany(Recipe, {
+//     through: Schedule,
+//     as: "scheduled_recipes",
+//     foreignKey: "user_id",
+//     onDelete: "SET NULL"
+// });
+
+// Recipe.hasMany(User, {
+//     through: Schedule,
+//     as: "scheduled_recipes",
+//     foreignKey: "user_id",
+//     onDelete: "SET NULL"
+// });
+
+// ==== User/Schedule ========
+// User.hasOne(Schedule, {
+//     foreignKey: "user_id"
+// });
+
+// Schedule.belongsTo(User, {
+//     foreignKey: "user_id"
+// });
+
+// ==== Recipe/Schedule ========
+// Recipe.belongsToMany(Schedule, {
+//     foreignKey: "recipe_id"
+// });
+
+// Schedule.hasMany(Recipe, {
+//     foreignKey: "recipe_id"
+// });
+
+// ==== User/Favorite ===========
+User.hasMany(Favorite, {
     foreignKey: "user_id"
 });
 
-MealPlan.belongsTo(User, {
+Favorite.belongsTo(User, {
     foreignKey: "user_id",
     onDelete: "SET NULL"
 });
 
-// ==== MealPlan/Recipe ===========
-MealPlan.belongsTo(Recipe, {
+// ==== Favorit/Recipe ===========
+Favorite.belongsTo(Recipe, {
     foreignKey: "recipe_id",
     onDelete: "SET NULL"
 });
 
-Recipe.hasMany(MealPlan, {
+Recipe.hasMany(Favorite, {
     foreignKey: "recipe_id"
 });
 
@@ -76,4 +109,4 @@ Comment.belongsTo(Recipe, {
 });
 
 
-module.exports = { User, MealPlan, Ingredient, Comment, Recipe };
+module.exports = { User, Favorite, Ingredient, Comment, Recipe /*, Schedule*/ };
