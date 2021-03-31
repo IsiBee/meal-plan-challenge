@@ -1,4 +1,4 @@
-let days = [];
+
 
 async function saveCalHandler(event) {
     event.preventDefault();
@@ -118,68 +118,10 @@ async function saveCalHandler(event) {
 
                 }
             })
-            .then(updatedCal => {
-                const getNewSchedule = fetch(`/api/schedules`, {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                })
-                    .then(CalObj => CalObj.json())
-                    .then(CalData => {
-                        console.log(CalData);
-                        days.push(CalData[0].sunday)
-                        days.push(CalData[0].monday)
-                        days.push(CalData[0].tuesday)
-                        days.push(CalData[0].wednesday);
-                        days.push(CalData[0].thursday);
-                        days.push(CalData[0].friday);
-                        days.push(CalData[0].saturday);
-
-                        addedRecipes = days.filter(day => day);
-                        console.log(days);
-
-                        addedRecipes.forEach(recipeId => {
-                            const getRecipe = fetch(`/api/recipes/${recipeId}`, {
-                                method: 'GET',
-                            })
-                                .then(recipeObj => recipeObj.json())
-                                .then(recipeData => {
-                                    let card = `<article class="draggable container card p-0 row mx-2 border border-3 border-success" data-value=${recipeData.recipe_name} draggable="true" id=${recipeData.id}>
-                                        <p class="card-header recipe-title">
-                                            ${recipeData.recipe_name}`
-                                    if (recipeData.is_spicy) {
-                                        card += `<span> 🌶️</span>`
-                                    }
-
-                                    card += `</p>
-                                        <div class="card-body recipe-card pb-0">
-                                            <p class="subtitle">
-                                                ${recipeData.description}
-                                            </p>
-                                            <p>
-                                                Prep Time:  ${recipeData.prep_time} min
-                                            </p>
-                                            <p>
-                                                Cook Time:  ${recipeData.cook_time} min
-                                            </p>
-                                            <p>
-                                                Serves  ${recipeData.servings}
-                                            </p>
-                                        </div>
-                                        <a class="text-info card-footer recipe-footer" href="/recipe/ ${recipeData.id}">see full recipe</a>
-                                    </article>`
 
 
-                                    return card;
-
-                                })
-                                .then(recipes => console.log(recipes));
-                        })
-
-                    })
-
-            })
     }
-}
+};
 
 
 document.querySelector('.saveCal').addEventListener('click', saveCalHandler);

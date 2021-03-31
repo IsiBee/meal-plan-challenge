@@ -1,18 +1,18 @@
 :root {
-    --primary-color: #070346;
-    --secondary-color: #bacddf;
-    --light-color: 	rgb(234, 241, 250);
+    --primary-color: #272727;
+    --secondary-color: #b9c3b8;
+    --light-color: 	#fff;
 }
 
 *{
     padding-left: 10px;
 }
 a.nav-link{
-    color:rgb(164, 191, 248) !important;
+    color:rgb(255, 255, 255) !important;
     text-shadow: 2px 2px 4px #000000;
 }
 a{
-    color:#8fc8e9 !important;
+    color:#ffffff !important;
    text-decoration:underline ;
 }
 .btn-small{
@@ -30,11 +30,11 @@ h2{
 body {
     margin: 0;
     padding: 0;
-    background-color:#b6d7eb;
+    background-color:#dddfd6;
 }
 
 .navbar-custom {
-    background-color:  #070346 !important;
+    background-color: #808f7e!important;
     font-weight: 700;
 }
 

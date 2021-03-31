@@ -43,26 +43,19 @@
 
         <div class="row day-container cal" id="added-recipe">
             <h3>Drag a Recipe to Plan your Meals for the week</h3>
-
             {{#each recipes as |recipe|}}
 
             {{> recipe-info recipe}}
 
             {{/each}}
         </div>
-        {{!-- <ul class="row" id="added-recipe" draggable="true">
-            {{#each recipes as |recipe|}}
-
-            {{> recipe-info recipe}}
-
-            {{/each}}
-        </ul> --}}
     </div>
 </div>
 
 
 <link rel="stylesheet" href="/css/style.css">
 
+<script src="/js/load-cal.js"></script>
 <script src="/js/save-cal.js"></script>
 <script src="/js/container.js"></script>
 <script src="/js/search-recipe.js"></script>

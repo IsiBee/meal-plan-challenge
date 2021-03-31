@@ -1,5 +1,5 @@
 const User = require("./User");
-const Favorite = require("./Favorite");
+//const Favorite = require("./Favorite");
 const Ingredient = require("./Ingredient");
 const Comment = require("./Comment");
 const Recipe = require("./Recipe");
@@ -15,74 +15,69 @@ Recipe.belongsTo(User, {
     onDelete: "SET NULL"
 });
 
+// User.belongsToMany(Recipe, {
+//     through: Favorite,
+//     as: "favorited_recipes",
+//     foreignKey: "user_id",
+//     onDelete: "SET NULL"
+// });
+
+// Recipe.belongsToMany(User, {
+//     through: Favorite,
+//     as: "favorited_recipes",
+//     foreignKey: "user_id",
+//     onDelete: "SET NULL"
+// });
+
 User.belongsToMany(Recipe, {
-    through: Favorite,
-    as: "favorited_recipes",
+    through: Schedule,
+    as: "scheduled_recipes",
     foreignKey: "user_id",
     onDelete: "SET NULL"
 });
 
 Recipe.belongsToMany(User, {
-    through: Favorite,
-    as: "favorited_recipes",
+    through: Schedule,
+    as: "scheduled_recipes",
     foreignKey: "user_id",
     onDelete: "SET NULL"
 });
-
-// User.hasMany(Recipe, {
-//     through: Schedule,
-//     as: "scheduled_recipes",
-//     foreignKey: "user_id",
-//     onDelete: "SET NULL"
-// });
-
-// Recipe.hasMany(User, {
-//     through: Schedule,
-//     as: "scheduled_recipes",
-//     foreignKey: "user_id",
-//     onDelete: "SET NULL"
-// });
 
 // ==== User/Schedule ========
 User.hasOne(Schedule, {
     foreignKey: "user_id"
 });
 
-// Schedule.belongsTo(User, {
-//     foreignKey: "user_id"
-// });
-
-// ==== Recipe/Schedule ========
-// Recipe.belongsToMany(Schedule, {
-//     foreignKey: "recipe_id"
-// });
-
-// Schedule.hasMany(Recipe, {
-//     foreignKey: "recipe_id"
-// });
-
-// ==== User/Favorite ===========
-User.hasMany(Favorite, {
+Schedule.belongsTo(User, {
     foreignKey: "user_id"
 });
 
-Favorite.belongsTo(User, {
-    foreignKey: "user_id",
-    onDelete: "SET NULL"
-});
+// ==== Recipe/Schedule ========
+// No columns in schedule called recipe_id
 
-// ==== Favorit/Recipe ===========
-Favorite.belongsTo(Recipe, {
-    foreignKey: "recipe_id",
-    onDelete: "SET NULL"
-});
+// ==== User/Favorite ===========
+// User.hasMany(Favorite, {
+//     foreignKey: "user_id"
+// });
 
-Recipe.hasMany(Favorite, {
-    foreignKey: "recipe_id"
-});
+// Favorite.belongsTo(User, {
+//     foreignKey: "user_id",
+//     onDelete: "SET NULL"
+// });
+
+// // ==== Favorit/Recipe ===========
+// Favorite.belongsTo(Recipe, {
+//     foreignKey: "recipe_id",
+//     onDelete: "SET NULL"
+// });
+
+// Recipe.hasMany(Favorite, {
+//     foreignKey: "recipe_id"
+// });
 
 // ==== Ingredient/Recipe ========
 Recipe.hasMany(Ingredient);
+
 Ingredient.belongsTo(Recipe);
 
 // ==== User/Comment ========
@@ -109,4 +104,4 @@ Comment.belongsTo(Recipe, {
 });
 
 
-module.exports = { User, Favorite, Ingredient, Comment, Recipe, Schedule };
+module.exports = { User, Ingredient, Comment, Recipe, Schedule };
