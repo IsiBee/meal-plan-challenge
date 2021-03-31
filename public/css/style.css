@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #272727;
-    --secondary-color: #b9c3b8;
+    --primary-color: #787878;
+    --secondary-color: #d8d8d8;
     --light-color: 	#fff;
 }
 
@@ -34,7 +34,7 @@ body {
 }
 
 .navbar-custom {
-    background-color: #808f7e!important;
+    background-color: #a8c0a8!important;
     font-weight: 700;
 }
 
@@ -131,7 +131,7 @@ article, .card {
 }
 
 footer {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid grey;
   display: flex;
   justify-content: center;
   padding: 1%;
