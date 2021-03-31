@@ -7,30 +7,7 @@ router.get('/', (req, res) => {
         attributes: [
             "id",
             "ingredient_name",
-            "recipe_id"
-        ],
-        include: [
-            {
-                model: Recipe,
-                attributes: [
-                    "id",
-                    "recipe_name"
-                ]
-            }
-        ]
-    })
-        .then(dbIngredientData => res.json(dbIngredientData))
-        .catch(err => res.status(500).json(err));
-});
-// ^^^ REQUIRES ATTENTION ^^^^^^
-
-// GET single ingredient ".../api/ingredients/:id"
-router.get("/:id", (req, res) => {
-    Ingredient.findOne({
-        where: { id: req.params.id },
-        attributes: [
-            "id",
-            "ingredient_name",
+            "quantity",
             "preparation",
             "recipe_id"
         ],
@@ -39,6 +16,33 @@ router.get("/:id", (req, res) => {
                 model: Recipe,
                 attributes: [
                     "id",
+                    "recipe_id",
+                    "recipe_name"
+                ]
+            }
+        ]
+    })
+        .then(dbIngredientData => res.json(dbIngredientData))
+        .catch(err => res.status(500).json(err));
+});
+
+// GET single ingredient ".../api/ingredients/:id"
+router.get("/:id", (req, res) => {
+    Ingredient.findOne({
+        where: { id: req.params.id },
+        attributes: [
+            "id",
+            "ingredient_name",
+            "quantity",
+            "preparation",
+            "recipe_id"
+        ],
+        include: [
+            {
+                model: Recipe,
+                attributes: [
+                    "id",
+                    "recipe_id",
                     "recipe_name",
                 ]
             }
@@ -51,14 +55,13 @@ router.get("/:id", (req, res) => {
         })
         .catch(err => res.status(500).json(err));
 });
-// ^^^ REQUIRES ATTENTION ^^^^^^
 
 // POST create ingredient ".../api/ingredients"
 router.post("/", (req, res) => {
     // expects {
     //     ingredient_name: "Cheddar",
     //     preparation: "shredded",
-    //     recipe_id: 1
+    //     recipe_id: 685177-274335-1617231796715 (or so...)
     // }
     Ingredient.create({
         ingredient_name: req.body.ingredient_name,

@@ -1,3 +1,9 @@
+const date = new Date();
+const dateNumber = date.getTime();
+
+const recipe_id = `${Math.floor(Math.random() * 1000000)}-${Math.floor(Math.random() * 1000000)}-${dateNumber}`;
+
+console.log(recipe_id);
 
 async function addRecipeHandler(event) {
     event.preventDefault();
@@ -16,6 +22,7 @@ async function addRecipeHandler(event) {
         const response = await fetch(`/api/recipes`, {
             method: 'POST',
             body: JSON.stringify({
+                recipe_id,
                 recipe_name,
                 description,
                 servings,
