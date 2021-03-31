@@ -31,6 +31,8 @@ body {
     margin: 0;
     padding: 0;
     background-color:#dddfd6;
+    position: relative;
+    min-height: 100vh;
 }
 
 .navbar-custom {
@@ -132,6 +134,9 @@ article, .card {
 
 footer {
   border-top: 1px solid grey;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
   display: flex;
   justify-content: center;
   padding: 1%;
