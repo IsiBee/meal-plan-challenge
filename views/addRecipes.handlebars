@@ -29,6 +29,18 @@
                 <input class="form-control" type="text" id="recipe_cooktime" name="cook_time"
                     placeholder="Enter cook time (min)">
             </div>
+
+            {{!-- ingredients start --}}
+            <div class="pb-3">
+                <label class="form-label" for="ingredients">Ingredients</label>
+                <div class=".ingredients-container"></div>
+                <input class="form-control" type="text" id="ingredient_name" name="ingredient_name" placeholder="Enter ingredient">
+                <input class="form-control" type="text" id="quantity" name="quantity" placeholder="Quantity">
+                <input class="form-control" type="text" id="preparation" name="preparation" placeholder="Preparation">
+                <button class="hide btn-small btn btn-warning offset-5 col">Save</button>
+            </div>
+            {{!-- ingredients end --}}
+
             <div class="pb-3">
                 <label class="form-label" for="cooking_instructions">Cooking Instructions</label>
                 <textarea class="form-control" name="cooking_instructions" placeholder="Enter cooking instructions"
