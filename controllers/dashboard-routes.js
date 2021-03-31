@@ -118,33 +118,4 @@ router.get("/myRecipes", withAuth, (req, res) => {
         .catch(err => res.status(500).json(err));
 });
 
-router.get("/search/:name", (req, res) => {
-    Recipe.findAll({
-        where: {
-            recipe_name: req.params.name
-        },
-        attributes: [
-            "id",
-            "recipe_name",
-            "description",
-            "created_at",
-            "servings",
-            "prep_time",
-            "cook_time",
-            "cooking_instructions",
-            "is_spicy",
-            "user_id"
-        ]
-    })
-        .then(dbRecipeData => {
-            const recipes = dbRecipeData.map(recipe => recipe.get({ plain: true }));
-
-            res.render("dashboard", {
-                recipes,
-                loggedIn: req.session.loggedIn
-            });
-        })
-        .catch(err => res.status(500).json(err));
-});
-
 module.exports = router;
