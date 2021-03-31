@@ -66,12 +66,13 @@ router.put("/:id", (req, res) => {
     Schedule.update(req.body,
         {
             individualHooks: true,
-            where: { id: req.params.id }
+            where: { user_id: req.params.id }
         }
     )
         .then(dbScheduleData => {
             if (!dbScheduleData) return res.status(404).json({ message: "No schedule found with this id" });
 
+            console.log(dbScheduleData);
             res.json(dbScheduleData);
         })
         .catch(err => res.status(500).json(err));

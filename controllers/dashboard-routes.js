@@ -104,10 +104,6 @@ router.get("/myRecipes", withAuth, (req, res) => {
             {
                 model: User,
                 attributes: ["username"]
-            },
-            {
-                model: Favorite,
-                attributes: ["recipe_id"]
             }
         ]
     })
