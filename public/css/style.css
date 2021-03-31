@@ -1,15 +1,30 @@
 :root {
-    --primary-color: #272727;
-    --secondary-color: #ffffff;
-    --light-color: #ebd798;
+    --primary-color: #787878;
+    --secondary-color: #d8d8d8;
+    --light-color: 	#fff;
 }
 
 *{
     padding-left: 10px;
 }
+a.nav-link{
+    color:white !important;
+    text-shadow: 2px 2px 4px #000000;
+}
+a{
+    color:#7D5822 !important;
+   text-decoration:underline ;
+}
+.btn-small{
+    padding:5px!important;
+    font-size: .9em  !important;
+}
 
 p {
     font-size: 20px;
+}
+h2{
+    margin-top:1em;
 }
 
 body {
@@ -21,6 +36,12 @@ body {
 
 main {
     padding-bottom: 3rem;
+    background-color:#dddfd6;
+}
+
+.navbar-custom {
+    background-color: #a8c0a8!important;
+    font-weight: 700;
 }
 
 .main-container {
@@ -35,10 +56,14 @@ main {
 }
 
 .day-container {
-    /* background-color: lightgrey; */
+    /* background-color:#fff; */
     padding: 1rem;
     margin-top: 1rem;
     border-radius: 15px;
+}
+
+#Saturday{
+    margin-bottom:2em;
 }
 
 .form-container {
@@ -115,11 +140,11 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid #ccc;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1%;
     font-size: 110%;
+    border-top: 1px solid grey;
 }
 
