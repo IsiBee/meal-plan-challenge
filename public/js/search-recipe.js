@@ -14,7 +14,7 @@ async function searchRecipeHandler(event) {
             .then(recipeobj => recipeobj.json())
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
-                    let card = `<article class="draggable card p-0 row mx-2 border border-3 border-success" data-value=${data[i].recipe_name} draggable="true">
+                    let card = `<article class="draggable container card p-0 row mx-2 border border-3 border-success" data-value=${data[i].recipe_name} draggable="true">
 
                     <p class="card-header recipe-title">
                         ${data[i].recipe_name}`
@@ -40,14 +40,7 @@ async function searchRecipeHandler(event) {
                     <a class="text-info card-footer recipe-footer" href="/recipe/ ${data[i].id}">see full recipe</a>
                 </article>`
 
-                    //#added-recipe\
-                    console.log(card)
-                    //cardObj = cardObj.innerHTML(card);
-                    //document.querySelector("#added-recipe").innerHTML+=card;
-
-                    // Target correct location 
                     document.querySelector("#added-recipe").insertAdjacentHTML("afterbegin", card);
-                    console.log(data)
 
                 }
 
