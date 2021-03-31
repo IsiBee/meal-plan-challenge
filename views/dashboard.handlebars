@@ -33,20 +33,30 @@
         <form class="search-recipe-form form-inline">
             <input type="text" id="pickedRecipe" placeholder="Search Recipes" />
 
-            <button type="submit" class="btn btn-small btn-success">
+            <button type="submit" class="btn btn-small btn-warning">
                 <span class="p-0"><i class="fas fa-search p-0"></i></span>
                 Search</button>
         </form>
-        <a href=" dashboard/addRecipes" class="btn-small btn btn-info mb-3 mx-4">
+        <a href=" dashboard/addRecipes"><button  class="btn-small btn btn-warning mb-3 mx-4">
             <span class="p-0"><i class="fas fa-plus p-0"></i></span>
-            Add New Recipe</a>
-        <ul class="row" id="added-recipe">
+            Add New Recipe</button></a>
+
+            <div class="row day-container cal" id="added-recipe">
+                <h3>Drag a Recipe to Plan your Meals for the week</h3>
+            
+                {{#each recipes as |recipe|}}
+
+                    {{> recipe-info recipe}}
+
+                {{/each}}
+            </div>
+        {{!-- <ul class="row" id="added-recipe" draggable="true">
             {{#each recipes as |recipe|}}
 
             {{> recipe-info recipe}}
 
             {{/each}}
-        </ul>
+        </ul> --}}
     </div>
 </div>
 
