@@ -37,19 +37,19 @@
                 <span class="p-0"><i class="fas fa-search p-0"></i></span>
                 Search</button>
         </form>
-        <a href=" dashboard/addRecipes"><button  class="btn-small btn btn-warning mb-3 mx-4">
-            <span class="p-0"><i class="fas fa-plus p-0"></i></span>
-            Add New Recipe</button></a>
+        <a href=" dashboard/addRecipes"><button class="btn-small btn btn-warning mb-3 mx-4">
+                <span class="p-0"><i class="fas fa-plus p-0"></i></span>
+                Add New Recipe</button></a>
 
-            <div class="row day-container cal" id="added-recipe">
-                <h3>Drag a Recipe to Plan your Meals for the week</h3>
-            
-                {{#each recipes as |recipe|}}
+        <div class="row day-container cal" id="added-recipe">
+            <h3>Drag a Recipe to Plan your Meals for the week</h3>
 
-                    {{> recipe-info recipe}}
+            {{#each recipes as |recipe|}}
 
-                {{/each}}
-            </div>
+            {{> recipe-info recipe}}
+
+            {{/each}}
+        </div>
         {{!-- <ul class="row" id="added-recipe" draggable="true">
             {{#each recipes as |recipe|}}
 
@@ -66,4 +66,3 @@
 <script src="/js/save-cal.js"></script>
 <script src="/js/container.js"></script>
 <script src="/js/search-recipe.js"></script>
-<script src="/js/cal.js"></script>

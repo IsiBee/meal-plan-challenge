@@ -11,15 +11,6 @@ async function addRecipeHandler(event) {
     const is_spicy = document.querySelector('#recipe_isSpicy').checked;
 
 
-    console.log(`${recipe_name}
-        description: ${description}
-        servings: ${servings}
-        prep time: ${prep_time}
-        cook time: ${cook_time}
-        cooking instructions: ${cooking_instructions}
-        is spicy: ${is_spicy}`);
-
-
     if (recipe_name && description && servings && prep_time && cook_time
         && cooking_instructions) {
         const response = await fetch(`/api/recipes`, {

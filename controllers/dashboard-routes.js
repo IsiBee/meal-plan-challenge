@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Recipe, User, Comment, Ingredient, Favorite } = require("../models");
+const { Recipe, User, Comment, Ingredient, Schedule } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", withAuth, (req, res) => {
@@ -7,6 +7,7 @@ router.get("/", withAuth, (req, res) => {
         where: {
             user_id: req.session.user_id
         },
+
         attributes: [
             "id",
             "recipe_name",
@@ -18,7 +19,7 @@ router.get("/", withAuth, (req, res) => {
             "cooking_instructions",
             "is_spicy",
             "user_id"
-        ]
+        ],
     })
         .then(dbRecipeData => {
             const recipes = dbRecipeData.map(recipe => recipe.get({ plain: true }));
