@@ -1,6 +1,6 @@
 :root {
     --primary-color: #272727;
-    --secondary-color: #ded3c5;
+    --secondary-color: #b9c3b8;
     --light-color: 	#fff;
 }
 
@@ -30,11 +30,11 @@ h2{
 body {
     margin: 0;
     padding: 0;
-    background-color:#faf0e6;
+    background-color:#dddfd6;
 }
 
 .navbar-custom {
-    background-color:  #d9b99b !important;
+    background-color: #808f7e!important;
     font-weight: 700;
 }
 
