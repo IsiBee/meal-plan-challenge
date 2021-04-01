@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Ingredient, Recipe } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // GET all ingredients ".../api/ingredients"
 router.get('/', (req, res) => {
@@ -57,7 +58,7 @@ router.get("/:id", (req, res) => {
 });
 
 // POST create ingredient ".../api/ingredients"
-router.post("/", (req, res) => {
+router.post("/", withAuth, (req, res) => {
     // expects {
     //     ingredient_name: "Cheddar",
     //     quantity: 4oz,
@@ -75,7 +76,7 @@ router.post("/", (req, res) => {
 });
 
 // PUT update ingredient ".../api/ingredients/:id"
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth,(req, res) => {
     Ingredient.update(
         {
             ingredient_name: req.body.ingredient_name,
@@ -96,7 +97,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE ingredient ".../api/ingredients/:id"
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth,(req, res) => {
     Ingredient.destroy({
         where: { id: req.params.id }
     })

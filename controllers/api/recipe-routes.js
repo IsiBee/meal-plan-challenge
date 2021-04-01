@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Recipe, User, Comment, Ingredient, Favorite } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 const chalk = require('chalk');
 const Sequelize = require('sequelize');
@@ -176,7 +177,7 @@ router.get("/:id", (req, res) => {
 
 
 // POST create new recipe ".../api/recipes"
-router.post("/", (req, res) => {
+router.post("/", withAuth, (req, res) => {
     // expects {
     //     special_id: 685177-274335-1617231796715,
     //     recipe_name: "Mac & Cheese",
@@ -211,7 +212,7 @@ router.post("/", (req, res) => {
 
 
 // FAVORITE route
-router.put("/saverecipe", (req, res) => {
+router.put("/saverecipe", withAuth, (req, res) => {
     if (req.session) {
         Recipe.saveRecipe(
             {
@@ -226,7 +227,7 @@ router.put("/saverecipe", (req, res) => {
 });
 
 // PUT update recipe ".../api/recipes/:id"
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Recipe.update(
         {
             recipe_name: req.body.recipe_name,
@@ -261,7 +262,7 @@ router.put('/:id', (req, res) => {
 // ^^^ REQUIRES ATTENTION ^^^^^^
 
 // DELETE a recipe ".../api/recipes/:id"
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
     Recipe.destroy({
         where: { id: req.params.id }
     })

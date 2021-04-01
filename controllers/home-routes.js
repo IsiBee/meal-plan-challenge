@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Recipe, User, Comment, Ingredient } = require("../models");
-const withAuth = require("../utils/auth");
 
 // render recipes on homepage "/"
 router.get("/", (req, res) => {
