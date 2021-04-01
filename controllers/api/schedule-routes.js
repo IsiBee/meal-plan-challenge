@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Recipe, User, Schedule } = require('../../models');
+const { User, Schedule } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 const chalk = require('chalk');
 
@@ -15,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 // GET one schedule ".../api/schedules/:id"
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
     Schedule.findOne({
         where: { user_id: req.params.id },
         include: [
@@ -34,7 +35,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST create a schedule ".../api/schedules"
-router.post("/", (req, res) => {
+router.post("/", withAuth, (req, res) => {
     // expects {
     //     user_id: 1,
     //     sunday: 3,
@@ -62,7 +63,7 @@ router.post("/", (req, res) => {
 })
 
 // PUT update schedule ".../api/schedules/:id"
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
     Schedule.update(req.body,
         {
             individualHooks: true,
@@ -79,7 +80,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE a schedule ".../api/schedules/:id"
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
     Schedule.destroy({
         where: { id: req.params.id }
     })
