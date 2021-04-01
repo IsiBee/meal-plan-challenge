@@ -1,7 +1,7 @@
 const User = require("./User");
 //const Favorite = require("./Favorite");
 const Ingredient = require("./Ingredient");
-const Comment = require("./Comment");
+const Comment = require("./comment");
 const Recipe = require("./Recipe");
 const Schedule = require("./Schedule");
 
