@@ -52,7 +52,7 @@ Recipe.init(
             autoIncrement: true, 
         },
 
-        recipe_id: {
+        special_id: {
             type: DataTypes.STRING,
             allowNull: false
         },

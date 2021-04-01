@@ -9,14 +9,14 @@ router.get('/', (req, res) => {
             "ingredient_name",
             "quantity",
             "preparation",
-            "recipe_id"
+            "special_id"
         ],
         include: [
             {
                 model: Recipe,
                 attributes: [
                     "id",
-                    "recipe_id",
+                    "special_id",
                     "recipe_name"
                 ]
             }
@@ -35,14 +35,14 @@ router.get("/:id", (req, res) => {
             "ingredient_name",
             "quantity",
             "preparation",
-            "recipe_id"
+            "special_id"
         ],
         include: [
             {
                 model: Recipe,
                 attributes: [
                     "id",
-                    "recipe_id",
+                    "special_id",
                     "recipe_name",
                 ]
             }
@@ -60,14 +60,15 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
     // expects {
     //     ingredient_name: "Cheddar",
+    //     quantity: 4oz,
     //     preparation: "shredded",
-    //     recipe_id: 685177-274335-1617231796715 (or so...)
+    //     special_id: 685177-274335-1617231796715 (or so...)
     // }
     Ingredient.create({
         ingredient_name: req.body.ingredient_name,
         quantity: req.body.quantity,
         preparation: req.body.preparation,
-        recipe_id: req.body.recipe_id
+        special_id: req.body.special_id
     })
         .then(dbIngredientData => res.json(dbIngredientData))
         .catch(err => res.status(500).json(err));

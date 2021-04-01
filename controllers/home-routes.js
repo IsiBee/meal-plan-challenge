@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
     Recipe.findAll({
         attributes: [
             "id",
-            "recipe_id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -74,7 +74,7 @@ router.get("/recipe/:id", (req, res) => {
         },
         attributes: [
             "id",
-            "recipe_id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -84,6 +84,7 @@ router.get("/recipe/:id", (req, res) => {
             "cooking_instructions",
             "is_spicy",
             "user_id"
+            [sequelize.literal("(SELECT (*) FROM ingredient WHERE recipe.special_id = ingredient.special_id)"), "ingredient_name"]
         ],
         include: [
             {
@@ -93,7 +94,7 @@ router.get("/recipe/:id", (req, res) => {
                     "ingredient_name",
                     "quantity",
                     "preparation",
-                    "recipe_id"
+                    "special_id"
                 ]
             },
             {

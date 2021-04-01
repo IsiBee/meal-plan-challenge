@@ -10,7 +10,7 @@ router.get("/", withAuth, (req, res) => {
 
         attributes: [
             "id",
-            "recipe_id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -41,7 +41,7 @@ router.get("/addRecipes", withAuth, (req, res) => {
         },
         attributes: [
             "id",
-            "recipe_id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -83,7 +83,7 @@ router.get("/myRecipes", withAuth, (req, res) => {
         },
         attributes: [
             "id",
-            "recipe_id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",

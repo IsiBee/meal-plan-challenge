@@ -30,29 +30,23 @@ Ingredient.init(
             allowNull: true,
         },
 
-        recipe_id: {
+        // recipe_id: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     // references: {
+        //     //     model: "recipe",
+        //     //     key: "special_id"
+        //     // }
+        // },
+
+        special_id: {
             type: DataTypes.STRING,
-            references: {
-                model: "recipe",
-                key: "recipe_id"
-            }
-        },
-
-        // is_gluten_free: {
-        //     type: DataTypes.BOOLEAN,
-        // },
-
-        // is_vegetarian: {
-        //     type: DataTypes.BOOLEAN,
-        // },
-
-        // is_vegan: {
-        //     type: DataTypes.BOOLEAN,
-        // },
-
-        // is_keto: {
-        //     type: DataTypes.BOOLEAN,
-        // },
+            allowNull: false,
+            // references: {
+            //     model: "recipe",
+            //     key: "special_id"
+            // }
+        }
     },
 
     {

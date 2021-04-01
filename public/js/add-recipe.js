@@ -1,9 +1,9 @@
 const date = new Date();
 const dateNumber = date.getTime();
 
-const recipe_id = `${Math.floor(Math.random() * 1000000)}-${Math.floor(Math.random() * 1000000)}-${dateNumber}`;
+const special_id = `${Math.floor(Math.random() * 1000000)}-${Math.floor(Math.random() * 1000000)}-${dateNumber}`;
 
-console.log(recipe_id);
+console.log(special_id);
 
 async function addRecipeHandler(event) {
     event.preventDefault();
@@ -22,7 +22,7 @@ async function addRecipeHandler(event) {
         const response = await fetch(`/api/recipes`, {
             method: 'POST',
             body: JSON.stringify({
-                recipe_id,
+                special_id,
                 recipe_name,
                 description,
                 servings,
@@ -45,5 +45,54 @@ async function addRecipeHandler(event) {
     }
 };
 
+// add ingredients
+// if (ingredient_name) {
+//     document.querySelector('#save-ingredient').classList.add('hide');
+// }
+
+async function addIngredientHandler(event) {
+    event.preventDefault();
+
+    const ingredient_name = document.querySelector('#ingredient-name').value.trim();
+    const quantity = document.querySelector('#quantity').value.trim();
+    const preparation = document.querySelector('#preparation').value.trim();
+
+    console.log(`
+        ingredient_name: ${ingredient_name}
+        quantity: ${quantity}
+        preparation: ${preparation}
+        special_id: ${special_id}
+    `);
+
+    if (ingredient_name) {
+        const response = await fetch(`/api/ingredients`, {
+            method: 'POST',
+            body: JSON.stringify({
+                ingredient_name,
+                quantity,
+                preparation,
+                special_id
+            }),
+            headers: { 'Content-Type': 'application/json' }
+
+        });
+
+        // check the response status
+        if (response.ok) {
+            console.log(`ingredient added!
+                ingredient_name: ${ingredient_name}
+                quantity: ${quantity}
+                preparation: ${preparation}
+                special_id: ${special_id}
+            `);
+        }
+
+    } else {
+        alert(response.statusText);
+    }
+
+}
+
 
 document.querySelector('.new-recipe-form').addEventListener('submit', addRecipeHandler);
+document.querySelector('#save-ingredient').addEventListener('click', addIngredientHandler);
