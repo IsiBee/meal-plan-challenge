@@ -63,7 +63,6 @@ main {
 
 .main-container {
     border-radius: 25px;
-    background-color: var(--secondary-color);
     color: var(--primary-color);
     margin: 10px;
     margin-top: 50px;
@@ -73,10 +72,10 @@ main {
 }
 
 .day-container {
-    /* background-color:#fff; */
     padding: 1rem;
     margin-top: 1rem;
     border-radius: 15px;
+    background-color: rgb(242, 243, 241);
 }
 
 #Saturday{
@@ -175,8 +174,7 @@ article, .card {
 }
 
 .cal{
-    font-weight: bold;
-    background-color: var(--light-color);
+    font-weight: bold;  
 }
 
 
@@ -189,6 +187,7 @@ footer {
   justify-content: center;
   padding: 1%;
   font-size: 110%;
+  color:#787878;
 }
 
 .hide {
@@ -203,7 +202,6 @@ footer {
 }
 
 @media screen and (max-width: 767px) {
-
 
 
 }
