@@ -58,6 +58,7 @@ body {
 
 main {
     padding: 0 10px 4rem 10px;
+    min-height: 80vh;
 }
 
 .main-container {
@@ -197,7 +198,11 @@ footer {
 /* =========================================== */
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 765px) {
+@media screen and (min-width: 768px) {
+
+}
+
+@media screen and (max-width: 767px) {
 
 
 
