@@ -123,22 +123,21 @@ router.get("/recipe/:id", (req, res) => {
             }
 
             const recipe = dbRecipeData.get({ plain: true });
-            console.log(recipe.special_id);
+
             Ingredient.findAll({
                 where: { special_id: recipe.special_id }
             })
                 .then(dbIngredientData => {
-                    console.log(dbIngredientData)
                     if(!dbIngredientData) return res.status(404).json({ message: "No ingredient found with this id" })
 
                     const ingredients = dbIngredientData.map(ingredient => ingredient.get({ plain: true }));
+                    
                     res.render("single-recipe", {
                         recipe,
                         ingredients,
                         loggedIn: req.session.loggedIn
                     });
-          
-                })
+                });
         })
         .catch(err => res.status(500).json(err));
 });

@@ -46,10 +46,6 @@ async function addRecipeHandler(event) {
 };
 
 // add ingredients
-// if (ingredient_name) {
-//     document.querySelector('#save-ingredient').classList.add('hide');
-// }
-
 async function addIngredientHandler(event) {
     event.preventDefault();
 
@@ -79,20 +75,36 @@ async function addIngredientHandler(event) {
 
         // check the response status
         if (response.ok) {
-            console.log(`ingredient added!
-                ingredient_name: ${ingredient_name}
-                quantity: ${quantity}
-                preparation: ${preparation}
-                special_id: ${special_id}
-            `);
+            generateIngredientHTML(ingredient_name, quantity, preparation);
+            ingredient_name.value = "";
+            quantity.value = "";
+            preparation.value = "";
         }
 
     } else {
         alert(response.statusText);
     }
 
-}
+};
 
+const generateIngredientHTML = (ingredient_name, quantity, preparation) => {
+    const ingredientsListEl = document.querySelector(".ingredients-list");
+    
+    let ingredientItem = document.createElement("li")
+    ingredientItem.classList.add("ingredient");
+    ingredientItem.innerHTML = `
+            <div class="meta">
+                <span>${quantity} </span>
+
+                ${ingredient_name}
+
+                <p>${preparation}</p>
+            </div>
+    `;
+    
+    console.log(ingredientItem);
+    ingredientsListEl.appendChild(ingredientItem);
+}
 
 document.querySelector('.new-recipe-form').addEventListener('submit', addRecipeHandler);
 document.querySelector('#save-ingredient').addEventListener('click', addIngredientHandler);
