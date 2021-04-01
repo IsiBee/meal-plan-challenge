@@ -5,7 +5,9 @@
 }
 
 *{
-    padding-left: 10px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 a.nav-link{
     color:rgb(255, 255, 255) !important;
@@ -38,10 +40,20 @@ body {
 .navbar-custom {
     background-color: #a8c0a8!important;
     font-weight: 700;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
+
+.nav-link {
+    margin: 0 1rem;
 }
 
 main {
-    padding-bottom: 3rem;
+    padding: 0 10px 4rem 10px;
 }
 
 .main-container {
@@ -73,6 +85,36 @@ main {
     text-align: left;
     padding: 20px;
     padding-bottom: 30px; 
+}
+
+textarea,
+input {
+    width: 100%;
+}
+
+.quantity,
+.preparation {
+    padding-left: 0;
+}
+
+#ingredient-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    /* padding-left: 0; */
+}
+
+/* #ingredient-inputs label {
+    padding-left: 10px;
+} */
+
+#save-ingredient,
+.ingredient-input,
+.quantity-input,
+.preparation-input {
+    flex-direction: row;
+    width: 95%;
 }
 
  .btn-big {
