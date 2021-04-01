@@ -7,25 +7,25 @@
         <button class="saveCal btn-small btn btn-warning" data-user={{user_id}}>
             <span class="p-0"><i class="fas fa-cart-arrow-down p-0"></i></span>
             Save meal plan</button>
-        <div class="day-container cal" id="Sunday">
+        <div class="day-container cal" id="Sunday" ondrop="onDrop(event);" ondragover="onDragOver(event);">
             Sunday
         </div>
-        <div class="day-container cal" id="Monday">
+        <div class="day-container cal" id="Monday" ondrop="onDrop(event);" ondragover="onDragOver(event);">
             Monday
         </div>
-        <div class="day-container cal" id="Tuesday">
+        <div class="day-container cal" id="Tuesday" ondrop="onDrop(event);" ondragover="onDragOver(event);">
             Tuesday
         </div>
-        <div class="day-container cal" id="Wednesday">
+        <div class="day-container cal" id="Wednesday" ondrop="onDrop(event);" ondragover="onDragOver(event);">
             Wednesday
         </div>
-        <div class="day-container cal" id="Thursday">
+        <div class="day-container cal" id="Thursday" ondrop="onDrop(event);" ondragover="onDragOver(event);">
             Thursday
         </div>
-        <div class="day-container cal" id="Friday">
+        <div class="day-container cal" id="Friday" ondrop="onDrop(event);" ondragover="onDragOver(event);">
             Friday
         </div>
-        <div class="day-container cal" id="Saturday">
+        <div class="day-container cal" id="Saturday" ondrop="onDrop(event);" ondragover="onDragOver(event);">
             Saturday
         </div>
     </div>
@@ -41,13 +41,17 @@
                 <span class="p-0"><i class="fas fa-plus p-0"></i></span>
                 Add New Recipe</button></a>
 
-        <div class="row day-container cal" id="added-recipe">
-            <h3>Drag a Recipe to Plan your Meals for the week</h3>
+        <h5>Drag a recipe to plan your meals for the week</h5>
+        <div class="row" id="added-recipe">
             {{#each recipes as |recipe|}}
 
             {{> recipe-info recipe}}
 
             {{/each}}
+        </div>
+        <div class="col-7 mx-2 day-container border border-danger" id="Trash" ondrop="onDrop(event);"
+            ondragover="onDragOver(event);">
+            <h5>Remove recipe by dragging it here</h5>
         </div>
     </div>
 </div>
@@ -57,5 +61,5 @@
 
 <script src="/js/load-cal.js"></script>
 <script src="/js/save-cal.js"></script>
-<script src="/js/container.js"></script>
+<script src="/js/drag-drop.js"></script>
 <script src="/js/search-recipe.js"></script>

@@ -25,7 +25,7 @@ async function getCalHandler(event) {
                 })
                     .then(recipeObj => recipeObj.json())
                     .then(recipeData => {
-                        let card = `<article class="draggable container card p-0 row mx-2 border border-3 border-success" data-value=${recipeData.recipe_name} draggable="true" id=${recipeData.id}>
+                        let card = `<article class="draggable container card p-0 row mx-2 border border-3 border-success" data-value=${recipeData.recipe_name} draggable="true" id=${recipeData.id} ondragstart="onDragStart(event);">
                                         <p class="card-header recipe-title">
                                             ${recipeData.recipe_name}`
                         if (recipeData.is_spicy) {
