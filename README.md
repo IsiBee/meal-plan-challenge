@@ -1,1 +1,1 @@
-# meal-plan-challenge
+# Meal Plan
