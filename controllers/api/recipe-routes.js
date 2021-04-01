@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
     Recipe.findAll({
         attributes: [
             "id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -31,7 +32,7 @@ router.get("/", (req, res) => {
                     "ingredient_name",
                     "quantity",
                     "preparation",
-                    "recipe_id"
+                    "special_id"
                 ]
             },
             {
@@ -66,6 +67,7 @@ router.get("/search/:name", (req, res) => {
         },
         attributes: [
             "id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -84,7 +86,7 @@ router.get("/search/:name", (req, res) => {
                     "ingredient_name",
                     "quantity",
                     "preparation",
-                    "recipe_id"
+                    "special_id"
                 ]
             },
             {
@@ -121,6 +123,7 @@ router.get("/:id", (req, res) => {
         where: { id: req.params.id },
         attributes: [
             "id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -139,7 +142,7 @@ router.get("/:id", (req, res) => {
                     "ingredient_name",
                     "quantity",
                     "preparation",
-                    "recipe_id"
+                    "special_id"
                 ]
             },
             {
@@ -175,6 +178,7 @@ router.get("/:id", (req, res) => {
 // POST create new recipe ".../api/recipes"
 router.post("/", (req, res) => {
     // expects {
+    //     special_id: 685177-274335-1617231796715,
     //     recipe_name: "Mac & Cheese",
     //     description: "the easiest pasta",
     //     servings: 2,
@@ -186,6 +190,7 @@ router.post("/", (req, res) => {
     // }
 
     Recipe.create({
+        special_id: req.body.special_id,
         recipe_name: req.body.recipe_name,
         description: req.body.description,
         servings: req.body.servings,

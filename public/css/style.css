@@ -147,3 +147,6 @@ footer {
   font-size: 110%;
 }
 
+.hide {
+    display: none;
+}

@@ -51,6 +51,11 @@ Recipe.init(
             primaryKey: true, 
             autoIncrement: true, 
         },
+
+        special_id: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         
         recipe_name:{
             type: DataTypes.STRING,

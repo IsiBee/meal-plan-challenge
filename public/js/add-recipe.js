@@ -1,3 +1,9 @@
+const date = new Date();
+const dateNumber = date.getTime();
+
+const special_id = `${Math.floor(Math.random() * 1000000)}-${Math.floor(Math.random() * 1000000)}-${dateNumber}`;
+
+console.log(special_id);
 
 async function addRecipeHandler(event) {
     event.preventDefault();
@@ -16,6 +22,7 @@ async function addRecipeHandler(event) {
         const response = await fetch(`/api/recipes`, {
             method: 'POST',
             body: JSON.stringify({
+                special_id,
                 recipe_name,
                 description,
                 servings,
@@ -38,5 +45,66 @@ async function addRecipeHandler(event) {
     }
 };
 
+// add ingredients
+async function addIngredientHandler(event) {
+    event.preventDefault();
+
+    const ingredient_name = document.querySelector('#ingredient-name').value.trim();
+    const quantity = document.querySelector('#quantity').value.trim();
+    const preparation = document.querySelector('#preparation').value.trim();
+
+    console.log(`
+        ingredient_name: ${ingredient_name}
+        quantity: ${quantity}
+        preparation: ${preparation}
+        special_id: ${special_id}
+    `);
+
+    if (ingredient_name) {
+        const response = await fetch(`/api/ingredients`, {
+            method: 'POST',
+            body: JSON.stringify({
+                ingredient_name,
+                quantity,
+                preparation,
+                special_id
+            }),
+            headers: { 'Content-Type': 'application/json' }
+
+        });
+
+        // check the response status
+        if (response.ok) {
+            generateIngredientHTML(ingredient_name, quantity, preparation);
+            ingredient_name.value = "";
+            quantity.value = "";
+            preparation.value = "";
+        }
+
+    } else {
+        alert(response.statusText);
+    }
+
+};
+
+const generateIngredientHTML = (ingredient_name, quantity, preparation) => {
+    const ingredientsListEl = document.querySelector(".ingredients-list");
+    
+    let ingredientItem = document.createElement("li")
+    ingredientItem.classList.add("ingredient");
+    ingredientItem.innerHTML = `
+            <div class="meta">
+                <span>${quantity} </span>
+
+                ${ingredient_name}
+
+                <p>${preparation}</p>
+            </div>
+    `;
+    
+    console.log(ingredientItem);
+    ingredientsListEl.appendChild(ingredientItem);
+}
 
 document.querySelector('.new-recipe-form').addEventListener('submit', addRecipeHandler);
+document.querySelector('#save-ingredient').addEventListener('click', addIngredientHandler);

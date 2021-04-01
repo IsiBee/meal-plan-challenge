@@ -21,14 +21,26 @@
             </div>
             <div class="pb-3 col-auto">
                 <label class="form-label" for="prep_time">Prep time (minutes)</label>
-                <input class="form-control" type="number" id="recipe_preptime" name="prep_time"
+                <input class="form-control" type="text" id="recipe_preptime" name="prep_time"
                     placeholder="Enter prep time (min)">
             </div>
             <div class="pb-3">
                 <label class="form-label" for="cook_time">Cook time (minutes)</label>
-                <input class="form-control" type="number" id="recipe_cooktime" name="cook_time"
+                <input class="form-control" type="text" id="recipe_cooktime" name="cook_time"
                     placeholder="Enter cook time (min)">
             </div>
+
+            {{!-- ingredients start --}}
+            <div class="pb-3">
+                <label class="form-label" for="ingredients">Ingredients</label>
+                <ul class="ingredients-list"></ul>
+                <input class="form-control" type="text" id="ingredient-name" name="ingredient-name" placeholder="Enter ingredient">
+                <input class="form-control" type="text" id="quantity" name="quantity" placeholder="Quantity">
+                <input class="form-control" type="text" id="preparation" name="preparation" placeholder="Preparation">
+                <button type="button" id="save-ingredient" class="btn-small btn btn-warning offset-5 col">Save</button>
+            </div>
+            {{!-- ingredients end --}}
+
             <div class="pb-3">
                 <label class="form-label" for="cooking_instructions">Cooking Instructions</label>
                 <textarea class="form-control" name="cooking_instructions" placeholder="Enter cooking instructions"
