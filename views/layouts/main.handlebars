@@ -14,38 +14,41 @@
 </head>
 
 <body>
-    <nav class="navbar-custom navbar navbar-expand-lg navbar-light bg-light px-0">
-        <ul class="navbar-nav mr-auto">
-            <li>
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li>
-                <a class="nav-link" href="/dashboard">My Dashboard</a>
-            </li>
-            <li>
-                <a class="nav-link" href="/dashboard/addRecipes">Add Recipe</a>
-            </li>
-            <li>
-                <a class="nav-link" href="/dashboard/myRecipes">My Recipes</a>
-            </li>
-            {{#if loggedIn}}
-            <li>
-                <a id="logout" href="/logout" class="nav-link">Logout</a>
-                {{else}}
-                <a class="nav-link" href="/login">Login</a>
-                {{/if}}
-            </li>
-            <li>
-                <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script><script>function addDarkmodeWidget() { new Darkmode().showWidget(); }window.addEventListener('load', addDarkmodeWidget);</script> 
-            </li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="navbar-custom navbar navbar-expand-lg navbar-light bg-light px-0">
+            <ul class="navbar-nav mr-auto">
+                <li>
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/dashboard">My Dashboard</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/dashboard/addRecipes">Add Recipe</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/dashboard/myRecipes">My Recipes</a>
+                </li>
+                {{#if loggedIn}}
+                <li>
+                    <a id="logout" href="/logout" class="nav-link">Logout</a>
+                    {{else}}
+                    <a class="nav-link" href="/login">Login</a>
+                    {{/if}}
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
     <main>
         {{{ body }}}
     </main>
+    
     <footer>
         Bon Apétit!
     </footer>
+    
     {{#if loggedIn}}
     <script src="/js/logout.js"></script>
     {{/if}}

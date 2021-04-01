@@ -30,22 +30,9 @@ Ingredient.init(
             allowNull: true,
         },
 
-        // recipe_id: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        //     // references: {
-        //     //     model: "recipe",
-        //     //     key: "special_id"
-        //     // }
-        // },
-
         special_id: {
             type: DataTypes.STRING,
-            allowNull: false,
-            // references: {
-            //     model: "recipe",
-            //     key: "special_id"
-            // }
+            allowNull: false
         }
     },
 

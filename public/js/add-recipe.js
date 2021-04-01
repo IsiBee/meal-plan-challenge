@@ -3,8 +3,6 @@ const dateNumber = date.getTime();
 
 const special_id = `${Math.floor(Math.random() * 1000000)}-${Math.floor(Math.random() * 1000000)}-${dateNumber}`;
 
-console.log(special_id);
-
 async function addRecipeHandler(event) {
     event.preventDefault();
 
@@ -53,10 +51,6 @@ async function addIngredientHandler(event) {
     const quantity = document.querySelector('#quantity').value.trim();
     const preparation = document.querySelector('#preparation').value.trim();
 
-    if (!ingredient_name) {
-        
-    }
-
     if (ingredient_name) {
         const response = await fetch(`/api/ingredients`, {
             method: 'POST',
@@ -73,6 +67,9 @@ async function addIngredientHandler(event) {
         // check the response status
         if (response.ok) {
             generateIngredientHTML(ingredient_name, quantity, preparation);
+            ingredient_name.value = "";
+            quantity.value = "";
+            preparation.value = "";
         }
 
     } else {
@@ -82,8 +79,6 @@ async function addIngredientHandler(event) {
 };
 
 const generateIngredientHTML = (ingredient_name, quantity, preparation) => {
-    if (!ingredient_name) return;
-
     const ingredientsListEl = document.querySelector(".ingredients-list");
     
     let ingredientItem = document.createElement("li")
@@ -106,7 +101,7 @@ const generateIngredientHTML = (ingredient_name, quantity, preparation) => {
     
     console.log(ingredientItem);
     ingredientsListEl.appendChild(ingredientItem);
-    replaceIngredientInputs();
+    // replaceIngredientInputs();
 };
 
 const replaceIngredientInputs = () => {
@@ -114,19 +109,19 @@ const replaceIngredientInputs = () => {
     ingredientInputs.innerHTML = "";
 
     ingredientInputs.innerHTML = `
-    <div class="col-3">
-        <input class="form-control ingredient-input" type="text" id="ingredient-name" name="ingredient-name" placeholder="Ingredient" onfocus=this.value=''>
-    </div>
-    <div class="col-2">
-        <input class="form-control quantity-input" type="text" id="quantity" name="quantity" placeholder="Quantity" onfocus=this.value=''>
-    </div>
-    <div class="col-4">
-        <input class="form-control preparation-input" type="text" id="preparation" name="preparation" placeholder="Preparation" onfocus=this.value=''>
-    </div>
-    <div class="col-3">
-        <button type="button" id="save-ingredient" class="btn-small btn btn-warning col-2 col">Save Ingredient</button>
-    </div>
-`;
+        <div class="col-3">
+            <input class="form-control ingredient-input" type="text" id="ingredient-name" name="ingredient-name" placeholder="Ingredient" onfocus=this.value=''>
+        </div>
+        <div class="col-2">
+            <input class="form-control quantity-input" type="text" id="quantity" name="quantity" placeholder="Quantity" onfocus=this.value=''>
+        </div>
+        <div class="col-4">
+            <input class="form-control preparation-input" type="text" id="preparation" name="preparation" placeholder="Preparation" onfocus=this.value=''>
+        </div>
+        <div class="col-3">
+            <button type="button" id="save-ingredient" class="btn-small btn btn-warning col-2 col">Save Ingredient</button>
+        </div>
+    `;
 };
 
 document.querySelector('.new-recipe-form').addEventListener('submit', addRecipeHandler);
