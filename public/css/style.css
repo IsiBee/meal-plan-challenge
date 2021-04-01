@@ -58,7 +58,6 @@ body {
 
 main {
     padding: 0 10px 4rem 10px;
-    min-height: 80vh;
 }
 
 .main-container {
@@ -114,7 +113,7 @@ input {
 .quantity-input,
 .preparation-input {
     flex-direction: row;
-    width: 95%;
+    width: 100%;
 }
 
  .btn-big {
@@ -124,6 +123,21 @@ input {
     font-size: 20px;
     border-radius: 10px;
 }
+
+.my-recipes {
+    padding-right: calc(var(--bs-gutter-x)/ 2);
+    padding-left: calc(var(--bs-gutter-x)/ 2);
+}
+
+.search-recipe-form {
+    padding-right: calc(var(--bs-gutter-x)/ 2);
+    padding-left: calc(var(--bs-gutter-x)/ 2);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
 
 .btn-small {
     color: var(--secondary-color);
@@ -153,13 +167,17 @@ input {
     padding: 10px 20px;
     font-size: 16px;
     color: var(--primary-color);
-    width: 40%;
-    margin-bottom: 15px;
     border-radius: 10px;
 }
 article, .card {
     border-radius: 5px;
 }
+
+.card {
+    width: 94%;
+    margin: 10px 3%;
+}
+
 .recipe-title {
     font-size: 14px;
     background-color: #fff;
@@ -167,6 +185,11 @@ article, .card {
 .recipe-card p{
     font-size: 12px;
     padding: 0px;
+}
+
+.recipe-info {
+    margin: 1rem;
+    margin-top: 0;
 }
 
 .recipe-footer{
@@ -177,6 +200,17 @@ article, .card {
     font-weight: bold;  
 }
 
+#added-recipe {
+    width: 100%;
+    margin: 0;
+    padding: 6%;
+}
+
+#Trash {
+    margin: 1rem 0;
+    padding: auto;
+    background-color: var(--primary-color);
+}
 
 footer {
   border-top: 1px solid grey;
@@ -190,19 +224,62 @@ footer {
   color:#787878;
 }
 
+/* UTILITY CLASSES */
 .hide {
     display: none;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.lighter-text {
+    opacity: 0.8;
 }
 
 /* =========================================== */
 
 /* MEDIA QUERIES */
-@media screen and (min-width: 768px) {
+@media screen and (max-width: ) {
 
+    /* .percentage-60 {
+        width: 70%;
+    }
+    .percentage-40 {
+        width: 30%;
+    }
+    .percentage-80 {
+        width: 80%;
+    }
+    .percentage-20 {
+        width: 20%
+    } */
 }
 
 @media screen and (max-width: 767px) {
 
+    .week,
+    .my-recipes {
+        width: 100%;
+    }
+
+    .percentage-70 {
+        width: 70%;
+    }
+    .percentage-30 {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 456px) {
+
+    .perc-100 {
+        width: 100%;
+    }
+
+    .btn111px {
+        width: 111px;
+    }
 
 }
 
@@ -226,4 +303,7 @@ footer {
         margin: 0 0.5rem;
     }
 
+    .per-100 {
+        width: 100%;
+    }
 }
