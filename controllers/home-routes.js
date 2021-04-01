@@ -1,13 +1,13 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Recipe, User, Comment, Ingredient } = require("../models");
-const withAuth = require("../utils/auth");
 
 // render recipes on homepage "/"
 router.get("/", (req, res) => {
     Recipe.findAll({
         attributes: [
             "id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -73,6 +73,7 @@ router.get("/recipe/:id", (req, res) => {
         },
         attributes: [
             "id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -91,7 +92,7 @@ router.get("/recipe/:id", (req, res) => {
                     "ingredient_name",
                     "quantity",
                     "preparation",
-                    "recipe_id"
+                    "special_id"
                 ]
             },
             {
@@ -122,10 +123,20 @@ router.get("/recipe/:id", (req, res) => {
 
             const recipe = dbRecipeData.get({ plain: true });
 
-            res.render("single-recipe", {
-                recipe,
-                loggedIn: req.session.loggedIn
-            });
+            Ingredient.findAll({
+                where: { special_id: recipe.special_id }
+            })
+                .then(dbIngredientData => {
+                    if(!dbIngredientData) return res.status(404).json({ message: "No ingredient found with this id" })
+
+                    const ingredients = dbIngredientData.map(ingredient => ingredient.get({ plain: true }));
+                    
+                    res.render("single-recipe", {
+                        recipe,
+                        ingredients,
+                        loggedIn: req.session.loggedIn
+                    });
+                });
         })
         .catch(err => res.status(500).json(err));
 });

@@ -15,7 +15,7 @@
             <div>Prep Time: {{recipe.prep_time}}</div>
             <div>Cook Time: {{recipe.cook_time}}</div>
 
-            {{> ingredients recipe.ingredients}}
+            {{> ingredients ingredients}}
 
             <h4>Instructions:</h4>
             <p class="recipe-footer">{{recipe.cooking_instructions}}</p>
@@ -37,7 +37,9 @@
 
     <div class="p-0">
         <button type="submit" class="btn btn-warning mb-2">add comment</button>
-        <button type="button" id="save-to-favorites" class="btn btn-warning mb-2">save to favorites</button>
+
+        {{!-- button for favorites feature in the future --}}
+        {{!-- <button type="button" id="save-to-favorites" class="btn btn-warning mb-2">save to favorites</button> --}}
     </div>
 </form>
 {{/if}}
@@ -46,6 +48,7 @@
 
 
 {{#if loggedIn}}
-<script src="/js/save-recipe.js"></script>
+{{!-- link to favorite script (future feature) --}}
+{{!-- <script src="/js/favorite-recipe.js"></script> --}}
 <script src="/js/comment.js"></script>
 {{/if}}

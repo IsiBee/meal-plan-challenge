@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Recipe, User, Comment, Ingredient, MealPlan } = require('../../models');
+const { Recipe, User, Comment, Ingredient, Favorite } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 const chalk = require('chalk');
 const Sequelize = require('sequelize');
@@ -12,6 +13,7 @@ router.get("/", (req, res) => {
     Recipe.findAll({
         attributes: [
             "id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -31,7 +33,7 @@ router.get("/", (req, res) => {
                     "ingredient_name",
                     "quantity",
                     "preparation",
-                    "recipe_id"
+                    "special_id"
                 ]
             },
             {
@@ -66,6 +68,7 @@ router.get("/search/:name", (req, res) => {
         },
         attributes: [
             "id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -84,7 +87,7 @@ router.get("/search/:name", (req, res) => {
                     "ingredient_name",
                     "quantity",
                     "preparation",
-                    "recipe_id"
+                    "special_id"
                 ]
             },
             {
@@ -121,6 +124,7 @@ router.get("/:id", (req, res) => {
         where: { id: req.params.id },
         attributes: [
             "id",
+            "special_id",
             "recipe_name",
             "description",
             "created_at",
@@ -139,7 +143,7 @@ router.get("/:id", (req, res) => {
                     "ingredient_name",
                     "quantity",
                     "preparation",
-                    "recipe_id"
+                    "special_id"
                 ]
             },
             {
@@ -173,8 +177,9 @@ router.get("/:id", (req, res) => {
 
 
 // POST create new recipe ".../api/recipes"
-router.post("/", (req, res) => {
+router.post("/", withAuth, (req, res) => {
     // expects {
+    //     special_id: 685177-274335-1617231796715,
     //     recipe_name: "Mac & Cheese",
     //     description: "the easiest pasta",
     //     servings: 2,
@@ -186,6 +191,7 @@ router.post("/", (req, res) => {
     // }
 
     Recipe.create({
+        special_id: req.body.special_id,
         recipe_name: req.body.recipe_name,
         description: req.body.description,
         servings: req.body.servings,
@@ -205,15 +211,15 @@ router.post("/", (req, res) => {
 });
 
 
-// MEAL PLAN route
-router.put("/saverecipe", (req, res) => {
+// FAVORITE route
+router.put("/saverecipe", withAuth, (req, res) => {
     if (req.session) {
         Recipe.saveRecipe(
             {
                 ...req.body,
                 user_id: req.session.user_id
             },
-            { MealPlan, Ingredient, User, Comment }
+            { Favorite, Ingredient, User, Comment }
         )
             .then(updatedRecipeData => res.json(updatedRecipeData))
             .catch(err => res.status(500).json(err));
@@ -221,7 +227,7 @@ router.put("/saverecipe", (req, res) => {
 });
 
 // PUT update recipe ".../api/recipes/:id"
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Recipe.update(
         {
             recipe_name: req.body.recipe_name,
@@ -256,7 +262,7 @@ router.put('/:id', (req, res) => {
 // ^^^ REQUIRES ATTENTION ^^^^^^
 
 // DELETE a recipe ".../api/recipes/:id"
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
     Recipe.destroy({
         where: { id: req.params.id }
     })

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Ingredient, Recipe } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // GET all ingredients ".../api/ingredients"
 router.get('/', (req, res) => {
@@ -7,13 +8,16 @@ router.get('/', (req, res) => {
         attributes: [
             "id",
             "ingredient_name",
-            "recipe_id"
+            "quantity",
+            "preparation",
+            "special_id"
         ],
         include: [
             {
                 model: Recipe,
                 attributes: [
                     "id",
+                    "special_id",
                     "recipe_name"
                 ]
             }
@@ -22,7 +26,6 @@ router.get('/', (req, res) => {
         .then(dbIngredientData => res.json(dbIngredientData))
         .catch(err => res.status(500).json(err));
 });
-// ^^^ REQUIRES ATTENTION ^^^^^^
 
 // GET single ingredient ".../api/ingredients/:id"
 router.get("/:id", (req, res) => {
@@ -31,14 +34,16 @@ router.get("/:id", (req, res) => {
         attributes: [
             "id",
             "ingredient_name",
+            "quantity",
             "preparation",
-            "recipe_id"
+            "special_id"
         ],
         include: [
             {
                 model: Recipe,
                 attributes: [
                     "id",
+                    "special_id",
                     "recipe_name",
                 ]
             }
@@ -51,27 +56,27 @@ router.get("/:id", (req, res) => {
         })
         .catch(err => res.status(500).json(err));
 });
-// ^^^ REQUIRES ATTENTION ^^^^^^
 
 // POST create ingredient ".../api/ingredients"
-router.post("/", (req, res) => {
+router.post("/", withAuth, (req, res) => {
     // expects {
     //     ingredient_name: "Cheddar",
+    //     quantity: 4oz,
     //     preparation: "shredded",
-    //     recipe_id: 1
+    //     special_id: 685177-274335-1617231796715 (or so...)
     // }
     Ingredient.create({
         ingredient_name: req.body.ingredient_name,
         quantity: req.body.quantity,
         preparation: req.body.preparation,
-        recipe_id: req.body.recipe_id
+        special_id: req.body.special_id
     })
         .then(dbIngredientData => res.json(dbIngredientData))
         .catch(err => res.status(500).json(err));
 });
 
 // PUT update ingredient ".../api/ingredients/:id"
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth,(req, res) => {
     Ingredient.update(
         {
             ingredient_name: req.body.ingredient_name,
@@ -92,7 +97,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE ingredient ".../api/ingredients/:id"
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth,(req, res) => {
     Ingredient.destroy({
         where: { id: req.params.id }
     })

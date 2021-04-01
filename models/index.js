@@ -1,8 +1,9 @@
 const User = require("./User");
-const MealPlan = require("./Meal-Plan");
+//const Favorite = require("./Favorite");
 const Ingredient = require("./Ingredient");
-const Comment = require("./Comment");
+const Comment = require("./comment");
 const Recipe = require("./Recipe");
+const Schedule = require("./Schedule");
 
 // ==== User/Recipe ===========
 User.hasMany(Recipe, {
@@ -14,42 +15,69 @@ Recipe.belongsTo(User, {
     onDelete: "SET NULL"
 });
 
+// User.belongsToMany(Recipe, {
+//     through: Favorite,
+//     as: "favorited_recipes",
+//     foreignKey: "user_id",
+//     onDelete: "SET NULL"
+// });
+
+// Recipe.belongsToMany(User, {
+//     through: Favorite,
+//     as: "favorited_recipes",
+//     foreignKey: "user_id",
+//     onDelete: "SET NULL"
+// });
+
 User.belongsToMany(Recipe, {
-    through: MealPlan,
-    as: "saved_recipes",
+    through: Schedule,
+    as: "scheduled_recipes",
     foreignKey: "user_id",
     onDelete: "SET NULL"
 });
 
 Recipe.belongsToMany(User, {
-    through: MealPlan,
-    as: "saved_recipes",
+    through: Schedule,
+    as: "scheduled_recipes",
     foreignKey: "user_id",
     onDelete: "SET NULL"
 });
 
-// ==== User/MealPlan ===========
-User.hasMany(MealPlan, {
+// ==== User/Schedule ========
+User.hasOne(Schedule, {
     foreignKey: "user_id"
 });
 
-MealPlan.belongsTo(User, {
-    foreignKey: "user_id",
-    onDelete: "SET NULL"
+Schedule.belongsTo(User, {
+    foreignKey: "user_id"
 });
 
-// ==== MealPlan/Recipe ===========
-MealPlan.belongsTo(Recipe, {
-    foreignKey: "recipe_id",
-    onDelete: "SET NULL"
-});
+// ==== Recipe/Schedule ========
+// No columns in schedule called recipe_id
 
-Recipe.hasMany(MealPlan, {
-    foreignKey: "recipe_id"
-});
+// ==== User/Favorite ===========
+// User.hasMany(Favorite, {
+//     foreignKey: "user_id"
+// });
+
+// Favorite.belongsTo(User, {
+//     foreignKey: "user_id",
+//     onDelete: "SET NULL"
+// });
+
+// // ==== Favorit/Recipe ===========
+// Favorite.belongsTo(Recipe, {
+//     foreignKey: "recipe_id",
+//     onDelete: "SET NULL"
+// });
+
+// Recipe.hasMany(Favorite, {
+//     foreignKey: "recipe_id"
+// });
 
 // ==== Ingredient/Recipe ========
 Recipe.hasMany(Ingredient);
+
 Ingredient.belongsTo(Recipe);
 
 // ==== User/Comment ========
@@ -76,4 +104,4 @@ Comment.belongsTo(Recipe, {
 });
 
 
-module.exports = { User, MealPlan, Ingredient, Comment, Recipe };
+module.exports = { User, Ingredient, Comment, Recipe, Schedule };

@@ -1,7 +1,18 @@
 <ul class="list-group">
+    <h3>My Recipes:</h3>
     {{#each recipes as |recipe|}}
     <li>
         {{> recipe-info recipe}}
     </li>
     {{/each}}
 </ul>
+
+{{!-- future feature --}}
+{{!-- <ul class="list-group">
+    <h3>My Favorites:</h3>
+    {{#each favorites as |favorite|}}
+    <li>
+        {{> recipe-info favorite}}
+    </li>
+    {{/each}}
+</ul> --}}

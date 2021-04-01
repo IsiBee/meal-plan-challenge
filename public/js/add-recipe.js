@@ -1,3 +1,9 @@
+const date = new Date();
+const dateNumber = date.getTime();
+
+const special_id = `${Math.floor(Math.random() * 1000000)}-${Math.floor(Math.random() * 1000000)}-${dateNumber}`;
+
+console.log(special_id);
 
 async function addRecipeHandler(event) {
     event.preventDefault();
@@ -11,20 +17,12 @@ async function addRecipeHandler(event) {
     const is_spicy = document.querySelector('#recipe_isSpicy').checked;
 
 
-    console.log(`${recipe_name}
-        description: ${description}
-        servings: ${servings}
-        prep time: ${prep_time}
-        cook time: ${cook_time}
-        cooking instructions: ${cooking_instructions}
-        is spicy: ${is_spicy}`);
-
-
     if (recipe_name && description && servings && prep_time && cook_time
         && cooking_instructions) {
         const response = await fetch(`/api/recipes`, {
             method: 'POST',
             body: JSON.stringify({
+                special_id,
                 recipe_name,
                 description,
                 servings,
@@ -47,5 +45,89 @@ async function addRecipeHandler(event) {
     }
 };
 
+// add ingredients
+async function addIngredientHandler(event) {
+    event.preventDefault();
+
+    const ingredient_name = document.querySelector('#ingredient-name').value.trim();
+    const quantity = document.querySelector('#quantity').value.trim();
+    const preparation = document.querySelector('#preparation').value.trim();
+
+    if (!ingredient_name) {
+        
+    }
+
+    if (ingredient_name) {
+        const response = await fetch(`/api/ingredients`, {
+            method: 'POST',
+            body: JSON.stringify({
+                ingredient_name,
+                quantity,
+                preparation,
+                special_id
+            }),
+            headers: { 'Content-Type': 'application/json' }
+
+        });
+
+        // check the response status
+        if (response.ok) {
+            generateIngredientHTML(ingredient_name, quantity, preparation);
+        }
+
+    } else {
+        alert(response.statusText);
+    }
+
+};
+
+const generateIngredientHTML = (ingredient_name, quantity, preparation) => {
+    if (!ingredient_name) return;
+
+    const ingredientsListEl = document.querySelector(".ingredients-list");
+    
+    let ingredientItem = document.createElement("li")
+    ingredientItem.classList.add("ingredient");
+    ingredientItem.innerHTML = ingredient_name;
+
+    if (quantity) {
+        let quantitySpan = document.createElement("span");
+        quantitySpan.classList.add("quantity");
+        quantitySpan.textContent = ` - ${quantity}`;
+        ingredientItem.appendChild(quantitySpan);
+    }
+
+    if (preparation) {
+        let preparationSpan = document.createElement("span");
+        preparationSpan.classList.add("preparation");
+        preparationSpan.textContent = ` - ${preparation}`;
+        ingredientItem.appendChild(preparationSpan);
+    }
+    
+    console.log(ingredientItem);
+    ingredientsListEl.appendChild(ingredientItem);
+    replaceIngredientInputs();
+};
+
+const replaceIngredientInputs = () => {
+    const ingredientInputs = document.querySelector("#ingredient-inputs");
+    ingredientInputs.innerHTML = "";
+
+    ingredientInputs.innerHTML = `
+    <div class="col-3">
+        <input class="form-control ingredient-input" type="text" id="ingredient-name" name="ingredient-name" placeholder="Ingredient" onfocus=this.value=''>
+    </div>
+    <div class="col-2">
+        <input class="form-control quantity-input" type="text" id="quantity" name="quantity" placeholder="Quantity" onfocus=this.value=''>
+    </div>
+    <div class="col-4">
+        <input class="form-control preparation-input" type="text" id="preparation" name="preparation" placeholder="Preparation" onfocus=this.value=''>
+    </div>
+    <div class="col-3">
+        <button type="button" id="save-ingredient" class="btn-small btn btn-warning col-2 col">Save Ingredient</button>
+    </div>
+`;
+};
 
 document.querySelector('.new-recipe-form').addEventListener('submit', addRecipeHandler);
+document.querySelector('#save-ingredient').addEventListener('click', addIngredientHandler);

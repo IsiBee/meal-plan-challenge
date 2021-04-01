@@ -14,9 +14,9 @@ async function searchRecipeHandler(event) {
             .then(recipeobj => recipeobj.json())
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
-                    let card = `<article class="draggable container card p-0 row mx-2 border border-3 border-success" data-value=${data[i].recipe_name} draggable="true">
+                    let card = `<article class="draggable container card p-0 row mx-2" data-value=${data[i].recipe_name} draggable="true" id=${data[i].id} ondragstart="onDragStart(event);">
 
-                    <p class="card-header recipe-title">
+                    <p class="card-header recipe-title border border-success">
                         ${data[i].recipe_name}`
                     if (data[i].is_spicy) {
                         card += `<span> 🌶️</span>`

@@ -1,18 +1,20 @@
 :root {
-    --primary-color: #272727;
-    --secondary-color: #b9c3b8;
+    --primary-color: #787878;
+    --secondary-color: #d8d8d8;
     --light-color: 	#fff;
 }
 
 *{
-    padding-left: 10px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 a.nav-link{
-    color:white !important;
+    color:rgb(255, 255, 255) !important;
     text-shadow: 2px 2px 4px #000000;
 }
 a{
-    color:#7D5822 !important;
+    color:#ffffff !important;
    text-decoration:underline ;
 }
 .btn-small{
@@ -31,11 +33,27 @@ body {
     margin: 0;
     padding: 0;
     background-color:#dddfd6;
+    position: relative;
+    min-height: 100vh;
 }
 
 .navbar-custom {
-    background-color: #808f7e!important;
+    background-color: #a8c0a8!important;
     font-weight: 700;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
+
+.nav-link {
+    margin: 0 1rem;
+}
+
+main {
+    padding: 0 10px 4rem 10px;
 }
 
 .main-container {
@@ -63,10 +81,41 @@ body {
 .form-container {
     border-radius: 25px;
     color: var(--primary-color);
+    background-color: var(--secondary-color);
     margin: 10px;
     text-align: left;
     padding: 20px;
     padding-bottom: 30px; 
+}
+
+textarea,
+input {
+    width: 100%;
+}
+
+.quantity,
+.preparation {
+    padding-left: 0;
+}
+
+#ingredient-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    /* padding-left: 0; */
+}
+
+/* #ingredient-inputs label {
+    padding-left: 10px;
+} */
+
+#save-ingredient,
+.ingredient-input,
+.quantity-input,
+.preparation-input {
+    flex-direction: row;
+    width: 95%;
 }
 
  .btn-big {
@@ -131,10 +180,16 @@ article, .card {
 }
 
 footer {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid grey;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
   display: flex;
   justify-content: center;
   padding: 1%;
   font-size: 110%;
 }
 
+.hide {
+    display: none;
+}
