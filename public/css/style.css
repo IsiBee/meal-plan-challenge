@@ -170,6 +170,11 @@ article, .card {
     padding: 0px;
 }
 
+.recipe-info {
+    margin: 1rem;
+    margin-top: 0;
+}
+
 .recipe-footer{
     font-size: 12px;
 }
@@ -191,8 +196,17 @@ footer {
   font-size: 110%;
 }
 
+/* UTILITY CLASSES */
 .hide {
     display: none;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.lighter-text {
+    opacity: 0.8;
 }
 
 /* =========================================== */
