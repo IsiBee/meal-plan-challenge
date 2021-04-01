@@ -76,52 +76,52 @@ async function saveCalHandler(event) {
     const saturday = satElement;
 
 
-    if (sunday || monday || tuesday || wednesday || thursday
-        || friday || saturday) {
-        const getSchedule = await fetch(`/api/schedules`, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
-        }).then(scheduleObj => scheduleObj.json())
-            .then(data => {
-                if (data.length) {
-                    const updateSchedule = fetch(`/api/schedules/${data[0].user_id}`, {
-                        method: 'PUT',
-                        body: JSON.stringify({
-                            sunday,
-                            monday,
-                            tuesday,
-                            wednesday,
-                            thursday,
-                            friday,
-                            saturday
-                        }),
-                        headers: { 'Content-Type': 'application/json' }
-                    })
+    const getSchedule = await fetch(`/api/schedules/`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(scheduleObj => scheduleObj.json())
+        .then(data => {
+            console.log(data[0].user_id);
+            if (data[0].user_id) {
+                const updateSchedule = fetch(`/api/schedules/${data[0].user_id}`, {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        sunday,
+                        monday,
+                        tuesday,
+                        wednesday,
+                        thursday,
+                        friday,
+                        saturday
+                    }),
+                    headers: { 'Content-Type': 'application/json' }
+                })
 
-                }
+            }
 
-                else {
-                    const createSchedule = fetch(`/api/schedules`, {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            sunday,
-                            monday,
-                            tuesday,
-                            wednesday,
-                            thursday,
-                            friday,
-                            saturday
-                        }),
-                        headers: { 'Content-Type': 'application/json' }
+            else {
+                const createSchedule = fetch(`/api/schedules`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        sunday,
+                        monday,
+                        tuesday,
+                        wednesday,
+                        thursday,
+                        friday,
+                        saturday
+                    }),
+                    headers: { 'Content-Type': 'application/json' }
 
-                    })
-
-                }
-            })
+                })
 
 
-    }
+            }
+        })
+
+
 };
+
 
 
 document.querySelector('.saveCal').addEventListener('click', saveCalHandler);
