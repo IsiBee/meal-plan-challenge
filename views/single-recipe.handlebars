@@ -1,3 +1,4 @@
+
 <div>
     <div class="card-header recipe-title">
         <h2>{{recipe.recipe_name}}
@@ -12,6 +13,7 @@
         <div class="italic lighter-text">
             <span>Prep Time: {{recipe.prep_time}} -</span>
             <span>Cook Time: {{recipe.cook_time}}</span>
+
         </div>
 
         <h4 class="mt-3">Description:</h4>
@@ -29,6 +31,7 @@
     <div class="pt-3">
         <h4>Comments/Notes</h4>
         {{> comments recipe.comments}}
+
     </div>
 
     {{#if loggedIn}}
@@ -52,6 +55,7 @@
 
 {{#if loggedIn}}
 {{!-- link to favorite script (future feature) --}}
-{{!-- <script src="/js/favorite-recipe.js"></script> --}}
+{{!--
+<script src="/js/favorite-recipe.js"></script> --}}
 <script src="/js/comment.js"></script>
 {{/if}}
