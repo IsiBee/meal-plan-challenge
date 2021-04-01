@@ -114,11 +114,19 @@ const replaceIngredientInputs = () => {
     ingredientInputs.innerHTML = "";
 
     ingredientInputs.innerHTML = `
-        <input class="form-control col-3 ingredient-input" type="text" id="ingredient-name" name="ingredient-name" placeholder="Enter ingredient" onfocus=this.value=''>
-        <input class="form-control col-2 quantity-input" type="text" id="quantity" name="quantity" placeholder="Quantity" onfocus=this.value=''>
-        <input class="form-control col-7 preparation-input" type="text" id="preparation" name="preparation" placeholder="Preparation" onfocus=this.value=''>
-        <button type="button" id="save-ingredient" class="btn-small btn btn-warning offset-5 col">Save Ingredient</button>
-    `;
+    <div class="col-3">
+        <input class="form-control ingredient-input" type="text" id="ingredient-name" name="ingredient-name" placeholder="Ingredient" onfocus=this.value=''>
+    </div>
+    <div class="col-2">
+        <input class="form-control quantity-input" type="text" id="quantity" name="quantity" placeholder="Quantity" onfocus=this.value=''>
+    </div>
+    <div class="col-4">
+        <input class="form-control preparation-input" type="text" id="preparation" name="preparation" placeholder="Preparation" onfocus=this.value=''>
+    </div>
+    <div class="col-3">
+        <button type="button" id="save-ingredient" class="btn-small btn btn-warning col-2 col">Save Ingredient</button>
+    </div>
+`;
 };
 
 document.querySelector('.new-recipe-form').addEventListener('submit', addRecipeHandler);
