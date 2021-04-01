@@ -1,0 +1,13 @@
+<div class="comments col-8">
+    {{#each this}}
+    <section class="comment">
+        <div class="text">
+            {{comment_text}}
+        </div>
+        <div class="meta ">
+            <p class="recipe-footer text-end">{{user.username}} on {{format_date created_at}}</p>
+        </div>
+
+    </section>
+    {{/each}}
+</div>

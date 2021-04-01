@@ -1,5 +1,152 @@
+:root {
+    --primary-color: #787878;
+    --secondary-color: #d8d8d8;
+    --light-color: 	#fff;
+}
+
 *{
+    padding-left: 10px;
+}
+a.nav-link{
+    color:rgb(255, 255, 255) !important;
+    text-shadow: 2px 2px 4px #000000;
+}
+a{
+    color:#ffffff !important;
+   text-decoration:underline ;
+}
+.btn-small{
+    padding:5px!important;
+    font-size: .9em  !important;
+}
+
+p {
+    font-size: 20px;
+}
+h2{
+    margin-top:1em;
+}
+
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    background-color:#dddfd6;
+    position: relative;
+    min-height: 100vh;
+}
+
+.navbar-custom {
+    background-color: #a8c0a8!important;
+    font-weight: 700;
+}
+
+main {
+    padding-bottom: 3rem;
+}
+
+.main-container {
+    border-radius: 25px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    margin: 10px;
+    margin-top: 50px;
+    text-align: center;
+    padding: 20px;
+    padding-bottom: 30px;
+}
+
+.day-container {
+    /* background-color:#fff; */
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 15px;
+}
+
+#Saturday{
+    margin-bottom:2em;
+}
+
+.form-container {
+    border-radius: 25px;
+    color: var(--primary-color);
+    margin: 10px;
+    text-align: left;
+    padding: 20px;
+    padding-bottom: 30px; 
+}
+
+ .btn-big {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.btn-small {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px; 
+}
+
+.draggable {
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid lightgrey;
+    cursor: move;
+    color: black;
+    width:33%;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.draggable.dragging {
+    opacity: 0.5;
+}
+
+#pickedRecipe{
+    border: 1px solid var(--light-color);
+    padding: 10px 20px;
+    font-size: 16px;
+    color: var(--primary-color);
+    width: 40%;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+article, .card {
+    border-radius: 5px;
+}
+.recipe-title {
+    font-size: 14px;
+    background-color: #fff;
+}
+.recipe-card p{
+    font-size: 12px;
+    padding: 0px;
+}
+
+.recipe-footer{
+    font-size: 12px;
+}
+
+.cal{
+    font-weight: bold;
+    background-color: var(--light-color);
+}
+
+footer {
+  border-top: 1px solid grey;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+  font-size: 110%;
+}
+
+.hide {
+    display: none;
 }

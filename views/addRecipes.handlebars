@@ -1,0 +1,58 @@
+<section>
+    <h2 class="pt-3">Create New Recipe</h2>
+
+    <div class="col-6">
+
+        <form class="new-recipe-form form-container">
+            <div class="pb-3">
+                <label class="form-label" for="recipe_name">Name</label>
+                <input class="form-control" type="text" id="recipe_name" name="recipe_name"
+                    placeholder="Enter recipe name">
+            </div>
+            <div class="pb-3">
+                <label class="form-label" for="description">Description</label>
+                <input class="form-control" type="text" id="recipe_description" name="description"
+                    placeholder="Enter description">
+            </div>
+            <div class="pb-3 col-auto">
+                <label class="form-label" for="servings"># of Servings</label>
+                <input class="form-control" type="number" id="recipe_servings" name="servings"
+                    placeholder="Enter number of servings">
+            </div>
+            <div class="pb-3 col-auto">
+                <label class="form-label" for="prep_time">Prep time (minutes)</label>
+                <input class="form-control" type="text" id="recipe_preptime" name="prep_time"
+                    placeholder="Enter prep time (min)">
+            </div>
+            <div class="pb-3">
+                <label class="form-label" for="cook_time">Cook time (minutes)</label>
+                <input class="form-control" type="text" id="recipe_cooktime" name="cook_time"
+                    placeholder="Enter cook time (min)">
+            </div>
+
+            {{!-- ingredients start --}}
+            <div class="pb-3">
+                <label class="form-label" for="ingredients">Ingredients</label>
+                <ul class="ingredients-list"></ul>
+                <input class="form-control" type="text" id="ingredient-name" name="ingredient-name" placeholder="Enter ingredient">
+                <input class="form-control" type="text" id="quantity" name="quantity" placeholder="Quantity">
+                <input class="form-control" type="text" id="preparation" name="preparation" placeholder="Preparation">
+                <button type="button" id="save-ingredient" class="btn-small btn btn-warning offset-5 col">Save</button>
+            </div>
+            {{!-- ingredients end --}}
+
+            <div class="pb-3">
+                <label class="form-label" for="cooking_instructions">Cooking Instructions</label>
+                <textarea class="form-control" name="cooking_instructions" placeholder="Enter cooking instructions"
+                    rows="3"></textarea>
+            </div>
+            <div class="pb-3">
+                <input type="checkbox" class="btn-check" id="recipe_isSpicy">
+                <label class="btn btn-outline-danger" for="recipe_isSpicy">Spicy?</label>
+            </div>
+            <button type="submit" class=" btn-small btn btn-warning offset-5 col">Create Recipe</button>
+        </form>
+    </div>
+</section>
+
+<script src="/js/add-recipe.js"></script>

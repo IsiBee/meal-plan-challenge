@@ -1,0 +1,18 @@
+{{#if loggedIn}}
+<div class="main-container">
+    <h2>Go to your dashboard to start planning</h2>
+    <a class="btn-big btn btn-warning" href="./dashboard" role="button">Dashboard</a>
+</div>
+{{/if}}
+
+{{#unless loggedIn}}
+<div class="main-container">
+    <h2 class="pb-3">Start your week with a MEAL plan</h2>
+    <p>Do you want to eat healthier?</p>
+    <p>Do you have trouble coming up with dinner ideas after a long day at work?</p>
+    <p>Plan your meals out for the whole week.</p>
+    <a class="btn-big btn-warning" href="./login" role="button">Login</a>
+</div>
+
+
+{{/unless}}

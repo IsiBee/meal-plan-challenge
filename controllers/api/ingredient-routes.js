@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Ingredient, Recipe, User } = require('../../models');
+const { Ingredient, Recipe } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // GET all ingredients ".../api/ingredients"
 router.get('/', (req, res) => {
@@ -7,37 +8,24 @@ router.get('/', (req, res) => {
         attributes: [
             "id",
             "ingredient_name",
-            "is_gluten_free",
-            "is_vegetarian",
-            "is_vegan",
-            "is_keto"
+            "quantity",
+            "preparation",
+            "special_id"
         ],
         include: [
-            // maybe this will allow searching by ingredients?
             {
                 model: Recipe,
                 attributes: [
                     "id",
-                    "recipe_name",
-                    "servings",
-                    "is_spicy",
-                    "user_id"
-                ],
-                include: {
-                    model: User,
-                    attributes: ["username"]
-                }
-            },
-            {
-                model: User,
-                attributes: ["username"]
+                    "special_id",
+                    "recipe_name"
+                ]
             }
         ]
     })
         .then(dbIngredientData => res.json(dbIngredientData))
         .catch(err => res.status(500).json(err));
 });
-// ^^^ REQUIRES ATTENTION ^^^^^^
 
 // GET single ingredient ".../api/ingredients/:id"
 router.get("/:id", (req, res) => {
@@ -46,30 +34,18 @@ router.get("/:id", (req, res) => {
         attributes: [
             "id",
             "ingredient_name",
-            "is_gluten_free",
-            "is_vegetarian",
-            "is_vegan",
-            "is_keto"
+            "quantity",
+            "preparation",
+            "special_id"
         ],
         include: [
-            // maybe this will allow searching by ingredients?
             {
                 model: Recipe,
                 attributes: [
                     "id",
+                    "special_id",
                     "recipe_name",
-                    "servings",
-                    "is_spicy",
-                    "user_id"
-                ],
-                include: {
-                    model: User,
-                    attributes: ["username"]
-                }
-            },
-            {
-                model: User,
-                attributes: ["username"]
+                ]
             }
         ]
     })
@@ -80,39 +56,35 @@ router.get("/:id", (req, res) => {
         })
         .catch(err => res.status(500).json(err));
 });
-// ^^^ REQUIRES ATTENTION ^^^^^^
 
 // POST create ingredient ".../api/ingredients"
-router.post("/", (req, res) => {
+router.post("/", withAuth, (req, res) => {
     // expects {
     //     ingredient_name: "Cheddar",
-    //     is_gluten_free: true,
-    //     is_vegetarian: true,
-    //     is_vegan: false,
-    //     is_keto: true
+    //     quantity: 4oz,
+    //     preparation: "shredded",
+    //     special_id: 685177-274335-1617231796715 (or so...)
     // }
     Ingredient.create({
         ingredient_name: req.body.ingredient_name,
-        is_gluten_free: req.body.is_gluten_free,
-        is_vegetarian: req.body.is_vegetarian,
-        is_vegan: req.body.is_vegan,
-        is_keto: req.body.is_keto
+        quantity: req.body.quantity,
+        preparation: req.body.preparation,
+        special_id: req.body.special_id
     })
         .then(dbIngredientData => res.json(dbIngredientData))
         .catch(err => res.status(500).json(err));
 });
 
 // PUT update ingredient ".../api/ingredients/:id"
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth,(req, res) => {
     Ingredient.update(
         {
             ingredient_name: req.body.ingredient_name,
-            is_gluten_free: req.body.is_gluten_free,
-            is_vegetarian: req.body.is_vegetarian,
-            is_vegan: req.body.is_vegan,
-            is_keto: req.body.is_keto    
+            quantity: req.body.quantity,
+            preparation: req.body.preparation,
         },
         {
+            individualHooks: true,
             where: { id: req.params.id }
         }
     )
@@ -125,7 +97,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE ingredient ".../api/ingredients/:id"
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth,(req, res) => {
     Ingredient.destroy({
         where: { id: req.params.id }
     })

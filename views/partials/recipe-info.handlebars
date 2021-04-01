@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/css/container.css">
+
+
+<article class="draggable card p-0 row mx-2" data-value={{recipe_name}} draggable="true" id={{id}}
+    ondragstart="onDragStart(event);">
+
+    <p class="card-header recipe-title">
+        {{recipe_name}}
+        {{#if is_spicy}}
+        <span> 🌶️</span>
+        {{/if}}
+    </p>
+    <div class="card-body recipe-card pb-0">
+        <p class="subtitle">
+            {{description}}
+        </p>
+        <p>
+            Prep Time: {{prep_time}} min
+        </p>
+        <p>
+            Cook Time: {{cook_time}} min
+        </p>
+        <p>
+            Serves {{servings}}
+        </p>
+    </div>
+    <a class="text-info card-footer recipe-footer" href="/recipe/{{id}}">see full recipe</a>
+</article>
+
+
+<script src="/js/drag-drop.js"></script>
