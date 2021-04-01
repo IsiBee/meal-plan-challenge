@@ -2,13 +2,19 @@ let days = [];
 async function getCalHandler(event) {
     event.preventDefault();
 
-    const getSchedule = await fetch(`/api/schedules`, {
+
+    const getSchedule = await fetch(`/api/schedules/`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     })
         .then(CalObj => CalObj.json())
         .then(CalData => {
-            if ((CalData[0].sunday === null) && (CalData[0].monday === null) && (CalData[0].tuesday === null) && (CalData[0].wednesday === null) &&
+            console.log(CalData.length === 0);
+            if (CalData.length === 0) {
+                console.log("No users in Schedule");
+                return 0;
+            }
+            else if ((CalData[0].sunday === null) && (CalData[0].monday === null) && (CalData[0].tuesday === null) && (CalData[0].wednesday === null) &&
                 (CalData[0].thursday === null) && (CalData[0].friday === null) && (CalData[0].saturday === null)) {
                 console.log('EMPTY');
                 return 0;

@@ -81,8 +81,8 @@ async function saveCalHandler(event) {
         headers: { 'Content-Type': 'application/json' }
     }).then(scheduleObj => scheduleObj.json())
         .then(data => {
-            console.log(data[0].user_id);
-            if (data[0].user_id) {
+            console.log(data);
+            if (data.length > 0) {
                 const updateSchedule = fetch(`/api/schedules/${data[0].user_id}`, {
                     method: 'PUT',
                     body: JSON.stringify({
