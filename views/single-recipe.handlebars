@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="form-container card col-4">
+    <div class="mx-2 card col-md-4 my-3">
         <div class="card-header recipe-title">
             <h2>{{recipe.recipe_name}}
                 {{#if recipe.is_spicy}}
@@ -22,7 +22,7 @@
 
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <div class="pt-3">
             <h3>Comments/Notes</h3>
             {{> comments recipe.comments}}
@@ -31,8 +31,8 @@
 </div>
 {{#if loggedIn}}
 <form class="comment-form">
-    <div class="col-4 p-0 mb-3">
-        <textarea class="form-control" name="comment-body" rows=3 placeholder="Enter note or comment"></textarea>
+    <div class="col-md-4 mb-3">
+        <textarea class="form-control" name="comment-body" rows="3" placeholder="Enter note or comment"></textarea>
     </div>
 
     <div class="p-0">
@@ -49,6 +49,7 @@
 
 {{#if loggedIn}}
 {{!-- link to favorite script (future feature) --}}
-{{!-- <script src="/js/favorite-recipe.js"></script> --}}
+{{!--
+<script src="/js/favorite-recipe.js"></script> --}}
 <script src="/js/comment.js"></script>
 {{/if}}
