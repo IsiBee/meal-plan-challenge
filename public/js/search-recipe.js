@@ -37,7 +37,7 @@ async function searchRecipeHandler(event) {
                             Serves  ${data[i].servings}
                         </p>
                     </div>
-                    <a class="text-info card-footer recipe-footer" href="/recipe/ ${data[i].id}">see full recipe</a>
+                    <a class="text-info card-footer recipe-footer" href="/recipe/${data[i].id}">see full recipe</a>
                 </article>`
 
                     document.querySelector("#added-recipe").insertAdjacentHTML("afterbegin", card);

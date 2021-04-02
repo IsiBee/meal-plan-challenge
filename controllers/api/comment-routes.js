@@ -30,23 +30,23 @@ router.post("/", withAuth, (req, res) => {
     //     recipe_id: 1,
     //     user_id: 1
     // }
-    if (req.session) { // only signed in user can comment
-        Comment.create({
-            comment_text: req.body.comment_text,
-            recipe_id: req.body.recipe_id,
-            user_id: req.session.user_id
+    // only signed in user can comment
+    Comment.create({
+        comment_text: req.body.comment_text,
+        recipe_id: req.body.recipe_id,
+        user_id: req.session.user_id
 
-            // FOR INSOMNIA CORE TESTING
-            // user_id: req.body.user_id
-        })
-            .then(dbCommentData => res.json(dbCommentData))
-            .catch(err => res.status(500).json(err));
-    } 
-});
+        // FOR INSOMNIA CORE TESTING
+        // user_id: req.body.user_id
+    })
+        .then(dbCommentData => res.json(dbCommentData))
+        .catch(err => res.status(500).json(err));
+}
+);
 
 // DELETE a comment ".../api/comments/:id"
-router.delete("/:id", withAuth,(req, res) => {
-    Comment.destroy({ where: { id: req.params.id }})
+router.delete("/:id", withAuth, (req, res) => {
+    Comment.destroy({ where: { id: req.params.id } })
         .then(dbCommentData => {
             if (!dbCommentData) return res.status(404).json({ message: "No comment found with this id" });
 
